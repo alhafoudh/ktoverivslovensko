@@ -15,32 +15,28 @@ const defaultKeywords = "";
 
 const { ...current } = Astro.props;
 
+const title = current.title ? `${current.title} | ${siteName}` : defaultTitle;
+const description = current.description || defaultDescription;
+const keywords = current.keywords || defaultKeywords;
+
 const gtagCode = import.meta.env.GTAG_CODE;
 ---
 
 <html lang="sk">
   <head>
     <Gtag code={gtagCode} />
-    <title>{current.title} | LSTME</title>
+    <title>{title}</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:site_name" content={siteName} />
-    <meta
-      name="title"
-      property="og:title"
-      content={current.title || defaultTitle}
-    />
-    <meta
-      name="description"
-      property="og:description"
-      content={current.description || defaultDescription}
-    />
-    <meta name="keywords" content={current.keywords || defaultKeywords} />
+    <meta name="title" property="og:title" content={title} />
+    <meta name="description" property="og:description" content={description} />
+    <meta name="keywords" content={keywords} />
   </head>
-  <body>
+  <body class="text-primary">
     <slot />
   </body>
 </html>

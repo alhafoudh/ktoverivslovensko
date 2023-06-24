@@ -1,0 +1,61 @@
+.button {
+  @apply font-medium rounded-[30px] text-sm px-5 py-3 text-center;
+  @apply bg-primary text-white;
+
+  &:hover {
+    @apply bg-secondary;
+  }
+
+
+  &:focus {
+    @apply outline-none;
+  }
+
+  &--secondary {
+    @apply bg-secondary;
+
+    &:hover {
+      @apply bg-primary;
+    }
+  }
+
+  &--accent {
+    @apply bg-accent text-primary;
+
+    &:hover {
+      @apply bg-primary text-white;
+    }
+  }
+
+  &--ghost {
+    @apply bg-white border-2 border-primary text-primary;
+
+    &:hover {
+      @apply bg-primary text-white;
+    }
+  }
+}
+
+.checkbox {
+  @apply w-[30px] h-[30px] border-2 border-primary appearance-none;
+
+  &:checked {
+    @apply text-primary;
+
+    background-image: url('data:image/svg+xml,<svg viewBox="-5 0 27 14" fill="blue" xmlns="http://www.w3.org/2000/svg"><path d="M17.2665 2.40744C17.6572 2.0171 17.6575 1.38393 17.2671 0.993224C16.8768 0.602515 16.2436 0.602217 15.8529 0.992557L5.95019 10.886L1.70711 6.64289C1.31658 6.25237 0.683416 6.25237 0.292892 6.64289C-0.0976321 7.03342 -0.0976319 7.66658 0.292892 8.05711L5.22825 12.9925C5.23286 12.9973 5.23754 13.002 5.24227 13.0068C5.43677 13.2015 5.69157 13.2992 5.94662 13.3C6.20367 13.3009 6.46098 13.2032 6.65711 13.0071C6.66186 13.0024 6.66655 12.9976 6.67119 12.9927L17.2665 2.40744Z"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.separator {
+  @apply w-full h-[1px] bg-separator;
+}
+
+.section {
+  @apply flex flex-col gap-[40px] py-[60px] px-[128px] mx-auto max-w-screen-xl text-center;
+
+  &--separated {
+    @apply border-t border-separator;
+  }
+}
