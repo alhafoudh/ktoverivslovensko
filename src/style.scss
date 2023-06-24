@@ -69,7 +69,7 @@ nav {
 }
 
 .section {
-  @apply flex flex-col gap-[40px] py-[45px] tablet:py-[60px] mx-auto max-w-screen-desktop;
+  @apply flex flex-col gap-[40px] py-[45px] tablet:py-[60px];
   @apply border-t border-separator;
 
   > h2 {
