@@ -1,4 +1,5 @@
 ---
+import "@fontsource-variable/manrope";
 import "../style.scss";
 import Gtag from "../components/Gtag.astro";
 
@@ -37,6 +38,60 @@ const gtagCode = import.meta.env.GTAG_CODE;
     <meta name="keywords" content={keywords} />
   </head>
   <body class="text-primary">
+    <nav class="h-14 bg-secondary">
+      <div
+        class="h-full mx-auto px-[40px] max-w-7xl flex justify-between items-center"
+      >
+        <a class="text-white text-[22px] font-bold leading-snug" href="/">
+          Zapni sa pre Slovensko
+        </a>
+        <ul class="menu">
+          <li class="hidden desktop:inline">
+            <a href="/#kto_veri_v_slovensko">Kto verí v Slovensko</a>
+          </li>
+          <li class="hidden desktop:inline">
+            <a href="/#iniciatorky_a_iniciatori">Iniciatorky a iniciátori</a>
+          </li>
+          <li class="hidden desktop:inline">
+            <a href="/#podporovatelia">Podporovatelia</a>
+          </li>
+          <li class="hidden desktop:inline"><a href="/#kontakt">Kontakt</a></li>
+          <li class="hidden tablet:inline">
+            <a class="button" href="#">Chcem podporiť</a>
+          </li>
+          <li class="hidden desktop:inline">
+            <a class="button button--secondary" href="#">Prihláste sa</a>
+          </li>
+          <li class="desktop:hidden">
+            <button>
+              <svg
+                width="40"
+                height="26"
+                viewBox="0 0 40 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M40 2H0V0H40V2ZM40 14H0V12H40V14ZM0 26H40V24H0V26Z"
+                  fill="white"></path>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <slot />
+    <div
+      class="flex flex-col tablet:flex-row gap-[33px] justify-between px-[20px] tablet:px-[40px] py-[30px] tablet:py-[37px] font-medium leading-none text-[14px]"
+    >
+      <div>&copy; 2023 Zapni sa pre Slovensko</div>
+      <div class="text-indigo-400">
+        Powered by <a href="https://www.onsinch.com" class="underline"
+          >onsinch</a
+        >
+      </div>
+    </div>
   </body>
 </html>

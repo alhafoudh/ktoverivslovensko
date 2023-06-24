@@ -6,6 +6,9 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      sans: ['Manrope Variable'],
+    },
     extend: {
       colors: {
         primary: '#0000ff',
@@ -13,8 +16,11 @@ module.exports = {
         accent: '#e6e6ff',
         separator: '#9999ff',
       },
-
     },
+    screens: {
+      'tablet': '834px',
+      'desktop': '1280px',
+    }
   },
   plugins: [],
 }

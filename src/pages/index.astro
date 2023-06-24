@@ -1,34 +1,287 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Belief, Supporter } from "../env";
+
+const beliefs: Belief[] = [
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+  {
+    image: "https://placehold.co/600x400",
+    name: "Ferko Mrkvička",
+    email: "ferko.mrkvicka@gmail.com",
+    city: "Bratislava",
+    text: "Proin sed turpis scelerisque ex tincidunt tempus non et turpis. Mauris laoreet ultrices pharetra. Proin sed elit nunc.",
+  },
+];
+
+const personInitiators = [
+  "Lucia Pašková",
+  "Zuzana Suchová",
+  "Michaela Benedigova",
+  "Juraj Bartoš",
+  "Alžbeta Brozmanova",
+  "Dominika Hradiská",
+  "Romana Umrianová",
+  "Milan Šemelák",
+];
+
+const companyInitiators = [
+  "Curaprox",
+  "Donio",
+  "Seesame",
+  "Free Andy",
+  "Platforma dobrovoľníckych centier a organizácií",
+  "Kto pomôže Slovensku",
+  "Kto pomôže Ukrajine",
+  "Ide nám o život",
+  "My sme les",
+  "Growni",
+  "Nexteria",
+];
+
+const supporters: Supporter[] = [
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+  {
+    name: "Organizácia",
+    amount: "100 000,00 €",
+    note: "finančná pomoc",
+  },
+];
 ---
 
 <Layout title="title">
-  <section class="section">
-    <h1
-      class="text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl"
-    >
-      Kto verí v Slovensko?
-    </h1>
-    <p class="text-lg font-semibold">
-      Najväčšou výzvou Slovenska nie sú politici, korupcia, zdravotníctvo,
-      nenávisť voči LGBTI+, Rusko, západ, Ukrajina. Nie sú to ani ľudia
-      nadávajúci na Slovensko, odchádzajúci z neho, tí čo mu pomáhajú alebo
-      zneužívajú ho, okrádajú, či tí, čo ho analyzujú alebo rovno nejdú voliť.
-      Nie! Všetko sú to symptómy. Našou najväčšou výzvou je, že v Slovensko verí
-      v skutočnosti veľmi málo ľudí.<br />
-      <br />
-      Kto verí slovenským učiteľkám a učiteľom?<br />
-      <br />
-      A kto slovenským policajtom či zdravotníkom.<br />
-      <br />
-      Veríme slovenskému školstvu, podnikateľom, mestám, novinárom, študentom?
-    </p>
-  </section>
-  <section class="section section--separated">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem
-      beatae corporis cum est, eveniet in ipsum maxime non quae rerum unde, ut.
-      Debitis nihil odio omnis placeat quam, reprehenderit?
-    </p>
-  </section>
+  <div class="px-[20px] tablet:px-[36px] desktop:px-[128px]">
+    <section class="section py-[20px] tablet:hidden">
+      <a class="button button--ghost" href="#">Chcem podporiť</a>
+    </section>
+    <section class="section section--hero">
+      <h1>Kto verí v Slovensko?</h1>
+      <p class="text-center">
+        Najväčšou výzvou Slovenska nie sú politici, korupcia, zdravotníctvo,
+        nenávisť voči LGBTI+, Rusko, západ, Ukrajina. Nie sú to ani ľudia
+        nadávajúci na Slovensko, odchádzajúci z neho, tí čo mu pomáhajú alebo
+        zneužívajú ho, okrádajú, či tí, čo ho analyzujú alebo rovno nejdú voliť.
+        Nie! Všetko sú to symptómy. Našou najväčšou výzvou je, že v Slovensko
+        verí v skutočnosti veľmi málo ľudí.<br />
+        <br />
+        Kto verí slovenským učiteľkám a učiteľom?<br />
+        <br />
+        A kto slovenským policajtom či zdravotníkom.<br />
+        <br />
+        Veríme slovenskému školstvu, podnikateľom, mestám, novinárom, študentom?
+      </p>
+    </section>
+    <section class="section">
+      <div class="flex flex-col tablet:flex-row gap-4">
+        <div class="bg-indigo-100 rounded-xl h-96 w-full tablet:w-2/3"></div>
+        <div class="bg-indigo-100 rounded-xl h-96 w-full tablet:w-1/3"></div>
+      </div>
+    </section>
+    <section class="section">
+      <p class="tablet:text-center">
+        Slovensko netreba zachrániť, mobilizovať ani mu pomáhať. Slovensko je
+        veľké. V Slovensko treba veriť. Ak verím, tak sa zaujímam. Ak verím, tak
+        neodídem.<br />
+        <br />
+        Slovákom sa netreba doprosovať a presviedčať ich. Netreba ich manipulovať
+        ani im “pomáhať”. Slovákom treba dať zodpovednosť za ich krajinu. Ak v ňu
+        veria, tak ju zmenia sami.<br />
+        <br />
+        Pomôž nám pripraviť jednoduché aktivity naprieč Slovenskom, občianskou spoločnosťou,
+        firmami a inštitúciami, ktorými chceme dlhodobo posilňovať vieru v naše Slovensko
+        a záujem o zodpovednosť zaň. Zapojiť sa bude môcť každý kto svoju vieru bude
+        chcieť pretaviť aj v činy. Dokážeme to iba spolu.<br />
+        <br />
+        <span class="cta">Pridajte sa a pomôžte nám pripraviť aktivity.</span>
+      </p>
+      <div class="tablet:mx-auto">
+        <a class="button button--secondary w-full tablet:w-fit" href="#"
+          >Pridajte sa</a
+        >
+      </div>
+    </section>
+    <section class="section">
+      <h2>Kto verí v Slovensko?</h2>
+      <p class="tablet:text-center tablet:stronger">
+        My veríme v Slovensko. Veríme v Slovenskú šikovnosť, silu komunity.
+        Veríme v slovenskú solidaritu. Veríme v Katarínku, Poloniny i Košice a
+        Rožňavu. Veríme v sladký život na Slovensku aj v slovenskú mládež či
+        ľudskosť, dobrodružstvo i priateľstvo.<br />
+        <br />
+        <span class="cta"
+          >Daj nám vedieť v čo na Slovensku veríš, nahraj svoje meno a fotku</span
+        >
+      </p>
+      <div class="mx-auto">
+        <a class="button button--secondary" href="#">Daj nám vediet</a>
+      </div>
+      <div
+        class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px]"
+      >
+        {
+          beliefs.map((belief) => (
+            <div class="bg-violet-50 rounded-[8px] overflow-clip flex flex-col">
+              <img
+                class="h-[188px] desktop:h-[135px] object-cover"
+                src={belief.image}
+              />
+              <div class="p-[20px] flex flex-col gap-[16px]">
+                <div class="text-[18px] font-bold leading-7">{belief.name}</div>
+                <a
+                  class="text-[16px] font-normal"
+                  href={`mailto:${belief.email}`}
+                >
+                  {belief.email}
+                </a>
+                <div class="text-[16px] font-normal leading-none">
+                  {belief.city}
+                </div>
+                <p class="text-[16px] font-semibold leading-relaxed">
+                  {belief.text}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+    <section class="section">
+      <h2>Iniciátori</h2>
+      <p class="tablet:text-center">
+        patria sem jednotlivci, občianska spoločnosť, firmy, organizácie,
+        inštitúcie a inciatívy, ktorí veria v Slovensko.
+      </p>
+      <p class="tablet:text-center stronger">
+        {personInitiators.join(" • ")}
+      </p>
+      <p class="tablet:text-center stronger">
+        {companyInitiators.join(" • ")}
+      </p>
+    </section>
+    <section class="section">
+      <h2>Podporovatelia</h2>
+      <div
+        class="grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-4 gap-[20px]"
+      >
+        {
+          supporters.map((supporter) => (
+            <div class="bg-violet-50 rounded-[8px] overflow-clip py-[20px] flex flex-col gap-[20px] items-center">
+              <div class="text-[16px] font-bold leading-relaxed">
+                {supporter.name}
+              </div>
+              <div class="text-[16px] font-medium leading-relaxed">
+                {supporter.amount}
+              </div>
+              <p class="text-[14px] font-medium leading-normal">
+                {supporter.note}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+    <section class="section">
+      <h2>Kontakt</h2>
+      <p class="tablet:text-center">Ďakujeme, že veríte v Slovensko.</p>
+      <p class="tablet:text-center">
+        Email: <a class="font-semibold" href="mailto:ahoj@ktoverivslovensko.sk"
+          >ahoj@ktoverivslovensko.sk</a
+        >
+      </p>
+      <p class="tablet:text-center">
+        Pre média: <a
+          class="font-semibold"
+          href="mailto:media@ktoverivslovensko.sk">media@ktoverivslovensko.sk</a
+        >
+      </p>
+    </section>
+    <section class="section">
+      <div class="tablet:mx-auto">
+        <a class="button button--secondary w-full tablet:w-fit" href="#"
+          >Chcem podporiť</a
+        >
+      </div>
+    </section>
+  </div>
 </Layout>

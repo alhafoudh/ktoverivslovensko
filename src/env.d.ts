@@ -12,4 +12,18 @@ declare global {
   let dataLayer: Record<string, any>[];
 }
 
+export interface Belief {
+  image: string;
+  name: string;
+  email: string;
+  city: string;
+  text: string;
+}
+
+export interface Supporter {
+  name: string;
+  amount: string;
+  note: string;
+}
+
 export {};
