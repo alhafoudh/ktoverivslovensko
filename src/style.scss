@@ -92,7 +92,7 @@ nav {
     @apply pt-[0px] tablet:pt-[70px] border-t-0 border-transparent;
 
     > h1 {
-      @apply text-[70px] font-bold text-center;
+      @apply text-[50px] desktop:text-[70px] font-bold text-center;
     }
 
     > p {
