@@ -62,6 +62,10 @@ nav {
           &--secondary {
             @apply bg-white text-secondary;
           }
+
+          &:hover {
+            @apply bg-white text-primary;
+          }
         }
       }
     }
