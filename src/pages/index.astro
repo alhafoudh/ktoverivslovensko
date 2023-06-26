@@ -43,9 +43,15 @@ import {
           <a class="uppercase underline" href="#">Darovať 25 &euro;</a>
           <a class="uppercase underline" href="#">Darovať 50 &euro;</a>
         </div>
-        <div class="mt-8">
-          Zatiaľ sme spoločne získali <span class="font-bold">1 962 010 €</span
-          >!
+        <div
+          :class="{ 'mt-8': true, 'hidden': amount === 0}"
+          x-data="{ amount: 0 }"
+          x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
+        >
+          Zatiaľ sme spoločne získali <span
+            class="font-bold"
+            x-text="new Intl.NumberFormat('sk-SK', ).format(amount)">0</span
+          >&nbsp;&euro;!
         </div>
         <div class="flex items-center gap-2">
           <span>Táto výzva beží na</span>
@@ -58,7 +64,7 @@ import {
             /></a
           >
         </div>
-        <div>Donio vždy odovzdá 100 % získanej sumy.</div>
+        <div>Donio vždy odovzdá 100% získanej sumy.</div>
       </div>
     </section>
     <section class="section section--without-separator">

@@ -6,7 +6,7 @@
 
 ## Development
 
-    yarn dev
+    yarn run vercel dev
 
 ## Build
 
