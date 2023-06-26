@@ -59,12 +59,16 @@ nav {
         &.button {
           @apply min-w-0 h-[36px];
 
-          &--secondary {
-            @apply bg-white text-secondary;
-          }
-
           &:hover {
             @apply bg-white text-primary;
+          }
+
+          &--secondary {
+            @apply bg-white text-secondary;
+
+            &:hover {
+              @apply bg-primary text-white;
+            }
           }
         }
       }
@@ -73,7 +77,7 @@ nav {
 }
 
 .section {
-  @apply flex flex-col gap-[40px] py-[45px] tablet:py-[60px];
+  @apply flex flex-col gap-[20px] py-[45px] tablet:py-[60px];
   @apply border-t border-separator;
 
   > h2 {
@@ -101,6 +105,20 @@ nav {
 
     > p {
       @apply font-semibold leading-10;
+    }
+  }
+
+  &--without-separator {
+    @apply border-t-0 border-transparent;
+  }
+}
+
+.donations {
+  .button {
+    @apply bg-secondary text-white;
+
+    &:hover {
+      @apply bg-white text-secondary;
     }
   }
 }
