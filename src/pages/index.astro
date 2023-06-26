@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import {
+  beliefModalFormUrl,
   beliefs,
   companyInitiators,
   donationUrl,
@@ -115,7 +116,11 @@ import {
         >
       </p>
       <div class="mx-auto">
-        <a class="button button--secondary" href="#">Dajte nám vediet</a>
+        <a
+          class="button button--secondary"
+          href={beliefModalFormUrl}
+          target="_blank">Dajte nám vediet</a
+        >
       </div>
       <div
         class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px]"

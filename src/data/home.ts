@@ -131,3 +131,6 @@ export const donationUrl = "https://www.donio.sk/prispevok/2479";
 
 export const donationUrlWithAmount = (amount: number) =>
   `https://www.donio.sk/prispevok/2479?amount=${amount}`;
+
+export const beliefModalFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeyO4pwS0698OYq5DiOdEI7xhSHsIMlxl0R1hYMP48efYqNvA/viewform";
