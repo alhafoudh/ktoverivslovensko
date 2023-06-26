@@ -126,3 +126,8 @@ export const supporters: Supporter[] = [
     note: "finančná pomoc",
   },
 ];
+
+export const donationUrl = "https://www.donio.sk/prispevok/2479";
+
+export const donationUrlWithAmount = (amount: number) =>
+  `https://www.donio.sk/prispevok/2479?amount=${amount}`;

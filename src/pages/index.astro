@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import {
   beliefs,
   companyInitiators,
+  donationUrl,
+  donationUrlWithAmount,
   personInitiators,
   supporters,
 } from "../data/home";
@@ -38,10 +40,16 @@ import {
         class="donations flex flex-col gap-4 rounded-[10px] bg-primary text-white p-[50px]"
       >
         <div class="flex items-center justify-between text-[22px]">
-          <a class="button uppercase" href="#">Darovať</a>
-          <a class="uppercase underline" href="#">Darovať 10 &euro;</a>
-          <a class="uppercase underline" href="#">Darovať 25 &euro;</a>
-          <a class="uppercase underline" href="#">Darovať 50 &euro;</a>
+          <a class="button uppercase" href={donationUrl}>Darovať</a>
+          <a class="uppercase underline" href={donationUrlWithAmount(10)}
+            >Darovať 10 &euro;</a
+          >
+          <a class="uppercase underline" href={donationUrlWithAmount(25)}
+            >Darovať 25 &euro;</a
+          >
+          <a class="uppercase underline" href={donationUrlWithAmount(50)}
+            >Darovať 50 &euro;</a
+          >
         </div>
         <div
           :class="{ 'mt-8': true, 'hidden': amount === 0}"
@@ -79,18 +87,20 @@ import {
         krajinu. Ak v ňu veria, tak ju zmenia sami.
       </p>
       <p class="tablet:text-center">
-        Pomôž nám pripraviť jednoduché aktivity naprieč Slovenskom, občianskou
-        spoločnosťou, firmami a inštitúciami, ktorými chceme dlhodobo posilňovať
-        vieru v naše Slovensko a záujem o zodpovednosť zaň. Zapojiť sa bude môcť
-        každý kto svoju vieru bude chcieť pretaviť aj v činy. Dokážeme to iba
-        spolu.
+        Pomôž nám pripraviť v spolupráci s dobrovoľníckymi centrami 1 000
+        jednoduchých aktivity pre dobrovoľníkov naprieč Slovenskom. Zapojíme
+        občiansku spoločnosť, firmy, inštitúcie a verejnosť tak, aby sme
+        dlhodobo posilňovali vieru v naše Slovensko a záujem o zodpovednosť zaň.
+        Zapojiť sa bude môcť každý kto svoju vieru bude chcieť pretaviť aj v
+        činy. Dokážeme to iba spolu.
       </p>
       <p class="tablet:text-center">
-        <span class="cta">Pridajte sa a pomôžte nám pripraviť aktivity.</span>
+        <span class="cta">Pridajte sa a pomôžte nám finančne</span>
       </p>
       <div class="tablet:mx-auto">
-        <a class="button button--secondary w-full tablet:w-fit" href="#"
-          >Darujte teraz</a
+        <a
+          class="button button--secondary w-full tablet:w-fit"
+          href={donationUrl}>Darujte teraz</a
         >
       </div>
     </section>
@@ -103,11 +113,11 @@ import {
         ľudskosť, dobrodružstvo i priateľstvo.<br />
         <br />
         <span class="cta"
-          >Daj nám vedieť v čo na Slovensku veríš, nahraj svoje meno a fotku</span
+          >Dajte nám vedieť v čo na Slovensku veríš, nahraj svoje meno a fotku</span
         >
       </p>
       <div class="mx-auto">
-        <a class="button button--secondary" href="#">Daj nám vediet</a>
+        <a class="button button--secondary" href="#">Dajte nám vediet</a>
       </div>
       <div
         class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px]"
@@ -136,8 +146,8 @@ import {
     <section id="iniciatorky_a_iniciatori" class="section">
       <h2>Iniciátorky a iniciátori</h2>
       <p class="tablet:text-center">
-        patria sem jednotlivci, občianska spoločnosť, firmy, organizácie,
-        inštitúcie a inciatívy, ktorí veria v Slovensko.
+        Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a
+        inciatívy, ktorí veríme v Slovensko.
       </p>
       <p class="tablet:text-center stronger">
         {personInitiators.join(" • ")}
@@ -172,21 +182,21 @@ import {
       <h2>Kontakt</h2>
       <p class="tablet:text-center">Ďakujeme, že veríte v Slovensko.</p>
       <p class="tablet:text-center">
-        Email: <a class="font-semibold" href="mailto:ahoj@ktoverivslovensko.sk"
-          >ahoj@ktoverivslovensko.sk</a
+        Email: <a class="font-semibold" href="mailto:ahoj@zapnisa.sk"
+          >ahoj@zapnisa.sk</a
         >
       </p>
       <p class="tablet:text-center">
-        Pre média: <a
-          class="font-semibold"
-          href="mailto:media@ktoverivslovensko.sk">media@ktoverivslovensko.sk</a
+        Pre média: <a class="font-semibold" href="mailto:media@zapnisa.sk"
+          >media@zapnisa.sk</a
         >
       </p>
     </section>
     <section class="section">
       <div class="tablet:mx-auto">
-        <a class="button button--secondary w-full tablet:w-fit" href="#"
-          >Darovať teraz</a
+        <a
+          class="button button--secondary w-full tablet:w-fit"
+          href={donationUrl}>Darujte teraz</a
         >
       </div>
     </section>
