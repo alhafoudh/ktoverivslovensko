@@ -76,6 +76,10 @@ nav {
   }
 }
 
+.section-wrapper {
+  @apply px-[20px] tablet:px-[36px] desktop:px-[128px] max-w-screen-desktop mx-auto;
+}
+
 .section {
   @apply flex flex-col gap-[20px] py-[45px] tablet:py-[60px];
   @apply border-t border-separator;
