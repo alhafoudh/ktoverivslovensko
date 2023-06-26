@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import {
   beliefModalFormUrl,
-  beliefs,
   companyInitiators,
   donationUrl,
   donationUrlWithAmount,
@@ -124,26 +123,31 @@ import {
       </div>
       <div
         class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px]"
+        x-data="{ beliefs: [] }"
+        x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
       >
-        {
-          beliefs.map((belief) => (
-            <div class="bg-violet-50 rounded-[8px] overflow-clip flex flex-col">
-              <img
-                class="h-[188px] desktop:h-[135px] object-cover"
-                src={belief.image}
-              />
-              <div class="p-[20px] flex flex-col gap-[16px]">
-                <div class="text-[18px] font-bold leading-7">{belief.name}</div>
-                <div class="text-[16px] font-normal leading-none">
-                  {belief.city}
-                </div>
-                <p class="text-[16px] font-semibold leading-relaxed">
-                  {belief.text}
-                </p>
+        <template x-for="belief in beliefs" :key="belief.id">
+          <div class="bg-violet-50 rounded-[8px] overflow-clip flex flex-col">
+            <img
+              class="h-[188px] desktop:h-[135px] object-cover"
+              x-bind:src="belief.image"
+            />
+            <div class="p-[20px] flex flex-col gap-[16px]">
+              <div class="text-[18px] font-bold leading-7" x-text="belief.name">
               </div>
+              <div
+                class="text-[16px] font-normal leading-none"
+                x-text="belief.city"
+              >
+              </div>
+              <p
+                class="text-[16px] font-semibold leading-relaxed"
+                x-text="belief.text"
+              >
+              </p>
             </div>
-          ))
-        }
+          </div>
+        </template>
       </div>
     </section>
     <section id="iniciatorky_a_iniciatori" class="section">
