@@ -1,6 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { kv } from "@vercel/kv";
-import fetch, { Response } from "node-fetch";
 import type { Belief } from "../src/env";
 
 export default async function handler(
