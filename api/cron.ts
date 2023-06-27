@@ -1,7 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { kv } from "@vercel/kv";
 import fetch from "node-fetch";
-import type { Belief } from "../src/env";
 
 const parseCsv = (str: string): Record<string, string>[] => {
   const arr: string[][] = [];
@@ -84,7 +83,7 @@ export default async function handler(
 
   const parsedData = parseCsv(data).filter((row) => row["Zverejniť"] === "áno");
 
-  const beliefs: Belief[] = parsedData.map((row) => {
+  const beliefs: Record<string, string>[] = parsedData.map((row) => {
     let image = "";
 
     const rawImageUrl =
