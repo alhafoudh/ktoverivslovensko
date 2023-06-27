@@ -1,9 +1,8 @@
 ---
-import Menu from "./Menu.astro";
 import { donationUrl } from "../data/home";
 ---
 
-<nav class="bg-secondary flex flex-col items-center" x-data="{open: false}">
+<nav class="bg-secondary flex flex-col items-center sticky top-0" x-data="{open: false}">
   <div
     class="h-[52px] mx-auto px-[20px] tablet:px-[40px] max-w-screen-desktop w-full flex justify-between items-center"
   >
@@ -139,8 +138,8 @@ import { donationUrl } from "../data/home";
       <a @click="open = false" href="/#podporovatelia">Podporovatelia</a>
     </li>
     <li><a @click="open = false" href="/#kontakt">Kontakt</a></li>
-    <li class="w-full">
-      <a class="button button--ghost w-full" @click="open = false" href="#">Prihláste sa</a>
+    <li class="w-full text-center">
+      <a class="button button--ghost" @click="open = false" href="#">Prihláste sa</a>
     </li>
     <li class="w-full flex justify-center py-[30px]">
       <a @click="open = false" href="https://www.facebook.com/Zapni-sa-pre-Slovensko-109776752154327">

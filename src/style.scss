@@ -81,15 +81,16 @@ nav {
     }
 
     &.menu--mobile {
-      @apply tablet:hidden;
+      @apply desktop:hidden;
 
       li {
         a {
           &.button {
-            @apply min-w-0 h-[60px];
+            @apply min-w-0 tablet:min-w-[335px] h-[60px];
 
             &--ghost {
               @apply text-white border-white bg-secondary;
+              @apply w-full tablet:w-0;
             }
           }
         }
