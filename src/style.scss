@@ -85,7 +85,7 @@ nav {
   @apply border-t border-separator;
 
   > h2 {
-    @apply text-[40px] font-bold leading-10 tablet:text-center;
+    @apply text-[40px] font-bold leading-10 tablet:text-center mb-[20px];
   }
 
   > p {
