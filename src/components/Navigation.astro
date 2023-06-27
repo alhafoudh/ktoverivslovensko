@@ -1,9 +1,11 @@
 ---
+import Menu from "./Menu.astro";
+import { donationUrl } from "../data/home";
 ---
 
-<nav class="h-[52px] bg-secondary flex items-center">
+<nav class="bg-secondary flex flex-col items-center" x-data="{open: false}">
   <div
-    class="mx-auto h-full px-[40px] max-w-screen-desktop w-full flex justify-between items-center"
+    class="h-[52px] mx-auto px-[20px] tablet:px-[40px] max-w-screen-desktop w-full flex justify-between items-center"
   >
     <a
       class="text-white text-[22px] h-full font-bold leading-snug flex items-center gap-2"
@@ -62,27 +64,29 @@
 
       <span class="text-[20px] font-bold">Zapni sa pre Slovensko</span>
     </a>
-    <ul class="menu">
-      <li class="hidden desktop:inline">
-        <a href="/#verime_v_slovensko">Veríme v Slovensko</a>
-      </li>
-      <li class="hidden desktop:inline">
-        <a href="/#iniciatorky_a_iniciatori">Iniciátori</a>
-      </li>
-      <li class="hidden desktop:inline">
-        <a href="/#podporovatelia">Podporovatelia</a>
-      </li>
-      <li class="hidden desktop:inline"><a href="/#kontakt">Kontakt</a></li>
-      <li class="hidden tablet:inline">
-        <a class="button" href="#">Darovať teraz</a>
-      </li>
-      <!--
-          <li class="hidden desktop:inline">
-            <a class="button button--secondary" href="#">Prihláste sa</a>
-          </li>
-          -->
-      <li class="desktop:hidden">
-        <button>
+    <div class="flex items-center gap-[40px]">
+      <ul class="menu menu--primary">
+        <li class="hidden desktop:inline">
+          <a href="/#verime_v_slovensko">Veríme v Slovensko</a>
+        </li>
+        <li class="hidden desktop:inline">
+          <a href="/#iniciatorky_a_iniciatori">Iniciátori</a>
+        </li>
+        <li class="hidden desktop:inline">
+          <a href="/#podporovatelia">Podporovatelia</a>
+        </li>
+        <li class="hidden desktop:inline"><a href="/#kontakt">Kontakt</a></li>
+        <li class="hidden tablet:inline">
+          <a class="button" href={donationUrl}>Darovať teraz</a>
+        </li>
+        <!--
+            <li class="hidden desktop:inline">
+              <a class="button button--secondary" href="#">Prihláste sa</a>
+            </li>
+            -->
+      </ul>
+      <div class="w-[40px] h-full flex items-center justify-center">
+        <button class="desktop:hidden" @click="open = true" x-show="!open">
           <svg
             width="40"
             height="26"
@@ -97,7 +101,68 @@
               fill="white"></path>
           </svg>
         </button>
-      </li>
-    </ul>
+        <button class="desktop:hidden" @click="open = false" x-show="open">
+          <svg
+            width="31"
+            height="31"
+            viewBox="0 0 31 31"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line
+              x1="1.14217"
+              y1="1.14214"
+              x2="29.4264"
+              y2="29.4264"
+              stroke="white"
+              stroke-width="2"></line>
+            <line
+              x1="29.4263"
+              y1="1.14213"
+              x2="1.14207"
+              y2="29.4264"
+              stroke="white"
+              stroke-width="2"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
+  <ul class="menu menu--mobile flex-col gap-[50px] py-[20px] px-[20px] w-full" x-show="open">
+    <li>
+      <a @click="open = false" href="/#verime_v_slovensko">Veríme v Slovensko</a>
+    </li>
+    <li>
+      <a @click="open = false" href="/#iniciatorky_a_iniciatori">Iniciátori</a>
+    </li>
+    <li>
+      <a @click="open = false" href="/#podporovatelia">Podporovatelia</a>
+    </li>
+    <li><a @click="open = false" href="/#kontakt">Kontakt</a></li>
+    <li class="w-full">
+      <a class="button button--ghost w-full" @click="open = false" href="#">Prihláste sa</a>
+    </li>
+    <li class="w-full flex justify-center py-[30px]">
+      <a @click="open = false" href="https://www.facebook.com/Zapni-sa-pre-Slovensko-109776752154327">
+        <svg
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_82_1212)">
+            <path
+              d="M25 0C11.2 0 0 11.25 0 25.15C0 37.7 9.15 48.1 21.1 50V32.4H14.75V25.15H21.1V19.6C21.1 13.3 24.85 9.8 30.55 9.8C33.3 9.8 36.15 10.3 36.15 10.3V16.5H33C29.9 16.5 28.95 18.45 28.95 20.45V25.15H35.9L34.8 32.4H28.9V50C40.85 48.1 50 37.7 50 25.15C50 11.25 38.8 0 25 0Z"
+              fill="white"></path>
+          </g>
+          <defs>
+            <clipPath id="clip0_82_1212">
+              <rect width="50" height="50" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+    </li>
+  </ul>
 </nav>

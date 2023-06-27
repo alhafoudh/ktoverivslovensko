@@ -55,19 +55,41 @@ nav {
     li {
       a {
         @apply text-white text-[16px] font-semibold leading-none;
+      }
+    }
 
-        &.button {
-          @apply min-w-0 h-[36px];
-
-          &:hover {
-            @apply bg-white text-primary;
-          }
-
-          &--secondary {
-            @apply bg-white text-secondary;
+    &.menu--primary {
+      li {
+        a {
+          &.button {
+            @apply min-w-0 h-[36px];
 
             &:hover {
-              @apply bg-primary text-white;
+              @apply bg-white text-primary;
+            }
+
+            &--secondary {
+              @apply bg-white text-secondary;
+
+              &:hover {
+                @apply bg-primary text-white;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.menu--mobile {
+      @apply tablet:hidden;
+
+      li {
+        a {
+          &.button {
+            @apply min-w-0 h-[60px];
+
+            &--ghost {
+              @apply text-white border-white bg-secondary;
             }
           }
         }
