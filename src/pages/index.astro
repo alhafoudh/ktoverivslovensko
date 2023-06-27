@@ -38,7 +38,7 @@ import {
         class="donations flex flex-col gap-4 rounded-[10px] bg-primary text-white p-[50px]"
       >
         <div
-          class="flex flex-col desktop:flex-row items-center desktop:justify-between gap-[20px] text-[22px]"
+          class="flex flex-col desktop:flex-row items-center desktop:justify-between gap-[20px] text-[22px] mb-8"
         >
           <a class="button uppercase" href={donationUrl}>Darovať</a>
           <a class="uppercase underline" href={donationUrlWithAmount(10)}
@@ -52,10 +52,10 @@ import {
           >
         </div>
         <div
-          class="mt-8"
           x-data="{ amount: 0 }"
           x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
           x-show="amount > 0"
+          x-transition
         >
           Zatiaľ sme spoločne získali <span
             class="font-bold"
