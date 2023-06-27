@@ -55,6 +55,7 @@ import {
           class="mt-8"
           x-data="{ amount: 0 }"
           x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
+          x-show="amount > 0"
         >
           Zatiaľ sme spoločne získali <span
             class="font-bold"
