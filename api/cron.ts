@@ -89,7 +89,6 @@ export default async function handler(
 
     const rawImageUrl =
       row["Nahrajte vašu fotku ALEBO logo firmy či organizácie"];
-    console.log(rawImageUrl);
     if (rawImageUrl) {
       const parsedRawImageUrl = new URL(rawImageUrl);
       const driveId = parsedRawImageUrl.searchParams.getAll("id")[0];
@@ -104,6 +103,8 @@ export default async function handler(
       image,
     };
   });
+
+  console.log(beliefs);
 
   await kv.set("beliefs:data", JSON.stringify(beliefs));
   await kv.set("beliefs:updated_at", new Date().toISOString());
