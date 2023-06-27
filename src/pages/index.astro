@@ -37,7 +37,9 @@ import {
       <div
         class="donations flex flex-col gap-4 rounded-[10px] bg-primary text-white p-[50px]"
       >
-        <div class="flex items-center justify-between text-[22px]">
+        <div
+          class="flex flex-col desktop:flex-row items-center desktop:justify-between gap-[20px] text-[22px]"
+        >
           <a class="button uppercase" href={donationUrl}>Darovať</a>
           <a class="uppercase underline" href={donationUrlWithAmount(10)}
             >Darovať 10 &euro;</a
@@ -50,14 +52,14 @@ import {
           >
         </div>
         <div
-          :class="{ 'mt-8': true, 'hidden': amount === 0}"
+          class="mt-8"
           x-data="{ amount: 0 }"
           x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
         >
           Zatiaľ sme spoločne získali <span
             class="font-bold"
-            x-text="new Intl.NumberFormat('sk-SK', ).format(amount)">0</span
-          >&nbsp;&euro;!
+            x-text="new Intl.NumberFormat('sk-SK').format(amount)">0</span
+          ><span class="font-bold">&nbsp;&euro;</span>!
         </div>
         <div class="flex items-center gap-2">
           <span>Táto výzva beží na</span>
