@@ -1,0 +1,84 @@
+---
+import { donationAmounts, donationUrlWithAmount } from "../data/home";
+---
+
+<div
+  class="donations flex flex-col gap-4 rounded-[10px] bg-primary text-white p-[50px] items-center"
+>
+  <form
+    class="w-full flex flex-col tablet:flex-row items-center desktop:justify-between gap-[20px] text-[22px] mb-8"
+    data-default-dontaion-amount={donationAmounts[0]}
+    x-data="{ amount: $el.dataset.defaultDontaionAmount }"
+  >
+    {
+      donationAmounts.map((amount, i) => (
+        <div class="w-full relative">
+          <input
+            name="amount"
+            id={`amount-${amount}`}
+            type="radio"
+            value={amount}
+            class="hidden peer"
+            x-model="amount"
+          />
+          <svg
+            class="invisible peer-checked:visible absolute top-[24px] left-[20px] desktop:left-[27px]"
+            width="24"
+            height="13"
+            viewBox="0 0 24 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.8075 1L8.54297 11.6"
+              stroke="#0000FF"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8.54367 11.6L1.88867 6.65"
+              stroke="#0000FF"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <label
+            for={`amount-${amount}`}
+            class="button button--ghost peer-checked:bg-white peer-checked:text-primary"
+          >
+            <span>{amount} &euro;</span>
+          </label>
+        </div>
+      ))
+    }
+    <a
+      class="button uppercase"
+      data-url={donationUrlWithAmount("")}
+      x-bind:href="$el.dataset.url + amount.toString()">Darovať</a
+    >
+  </form>
+  <div
+    x-data="{ amount: $persist(0) }"
+    x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
+    x-show="amount > 0"
+    x-transition
+    class="text-[36px] font-light text-center"
+  >
+    Zatiaľ sme spoločne získali <span
+      class="font-bold"
+      x-text="new Intl.NumberFormat('sk-SK').format(amount)">0</span
+    ><span class="font-bold">&nbsp;&euro;</span>!
+  </div>
+  <div class="flex items-center gap-2 text-[16px]">
+    <span>Táto výzva beží na</span>
+    <a
+      href="https://www.donio.sk/?utm_source=widget&utm_medium=referral&utm_campaign=kto-veri-v-slovensko&utm_term=kto-veri-v-slovensko&utm_content=widget"
+      target="_blank"
+      ><img src="/images/donio-logo.png" class="inline h-[25px]" /></a
+    >
+  </div>
+  <div class="text-[16px]">Donio vždy odovzdá 100% získanej sumy.</div>
+</div>

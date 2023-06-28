@@ -4,10 +4,10 @@ import {
   beliefModalFormUrl,
   companyInitiators,
   donationUrl,
-  donationUrlWithAmount,
   personInitiators,
   supporters,
 } from "../data/home";
+import Donations from "../components/Donations.astro";
 ---
 
 <Layout title="title">
@@ -34,44 +34,7 @@ import {
       </p>
     </section>
     <section class="section section--without-separator p-0">
-      <div
-        class="donations flex flex-col gap-4 rounded-[10px] bg-primary text-white p-[50px]"
-      >
-        <div
-          class="flex flex-col desktop:flex-row items-center desktop:justify-between gap-[20px] text-[22px] mb-8"
-        >
-          <a class="button uppercase" href={donationUrl}>Darovať</a>
-          <a class="uppercase underline" href={donationUrlWithAmount(10)}
-            >Darovať 10 &euro;</a
-          >
-          <a class="uppercase underline" href={donationUrlWithAmount(25)}
-            >Darovať 25 &euro;</a
-          >
-          <a class="uppercase underline" href={donationUrlWithAmount(50)}
-            >Darovať 50 &euro;</a
-          >
-        </div>
-        <div
-          x-data="{ amount: 0 }"
-          x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
-          x-show="amount > 0"
-          x-transition
-        >
-          Zatiaľ sme spoločne získali <span
-            class="font-bold"
-            x-text="new Intl.NumberFormat('sk-SK').format(amount)">0</span
-          ><span class="font-bold">&nbsp;&euro;</span>!
-        </div>
-        <div class="flex items-center gap-2">
-          <span>Táto výzva beží na</span>
-          <a
-            href="https://www.donio.sk/?utm_source=widget&utm_medium=referral&utm_campaign=kto-veri-v-slovensko&utm_term=kto-veri-v-slovensko&utm_content=widget"
-            target="_blank"
-            ><img src="/images/donio-logo.png" class="inline h-[25px]" /></a
-          >
-        </div>
-        <div>Donio vždy odovzdá 100% získanej sumy.</div>
-      </div>
+      <Donations />
     </section>
     <section class="section section--without-separator">
       <p class="tablet:text-center">
@@ -123,7 +86,7 @@ import {
       </div>
       <div
         class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px]"
-        x-data="{ beliefs: [] }"
+        x-data="{ beliefs: $persist([]) }"
         x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
       >
         <template x-for="belief in beliefs" :key="belief.id">

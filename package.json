@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@alpinejs/persist": "^3.12.2",
     "@astrojs/alpinejs": "^0.2.2",
     "@astrojs/tailwind": "^4.0.0",
     "@astrojs/ts-plugin": "^1.0.10",

@@ -38,6 +38,13 @@ const gtagCode = import.meta.env.GTAG_CODE;
     <meta name="title" property="og:title" content={title} />
     <meta name="description" property="og:description" content={description} />
     <meta name="keywords" content={keywords} />
+
+    <script>
+      import Alpine from "alpinejs";
+      import persist from "@alpinejs/persist";
+
+      Alpine.plugin(persist);
+    </script>
   </head>
   <body class="text-primary">
     <Navigation />

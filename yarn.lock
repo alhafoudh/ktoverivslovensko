@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@alpinejs/persist@^3.12.2":
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/@alpinejs/persist/-/persist-3.12.2.tgz#cb14d323ff8a78d041f66e281fc4d6a8757f04d3"
+  integrity sha512-Bl8/XLySboH7hkujGDl8e6m8CFeaWGyIoVQE4ht5t30/AGNsE6aCoCJge2HejBVOkCz/2SoCGzU7MT67fhcmug==
+
 "@ampproject/remapping@^2.2.0":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.1.tgz#99e8e11851128b8702cd57c33684f1d0f260b630"

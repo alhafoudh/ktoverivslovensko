@@ -70,7 +70,9 @@ export const supporters: Supporter[] = [
 
 export const donationUrl = "https://www.donio.sk/prispevok/2479";
 
-export const donationUrlWithAmount = (amount: number) =>
+export const donationAmounts = [10, 25, 50];
+
+export const donationUrlWithAmount = (amount: number | '') =>
   `https://www.donio.sk/prispevok/2479?amount=${amount}`;
 
 export const beliefModalFormUrl =

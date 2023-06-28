@@ -160,10 +160,20 @@ nav {
 
 .donations {
   .button {
-    @apply bg-secondary text-white min-w-0 tablet:min-w-[335px] w-full tablet:w-0;
+    @apply bg-secondary text-white min-w-0 w-full;
 
     &:hover {
       @apply bg-white text-secondary;
+    }
+  }
+
+  label {
+    &.button--ghost {
+      @apply text-white border-white bg-primary cursor-pointer;
+
+      &:hover {
+        @apply bg-white text-primary;
+      }
     }
   }
 }
