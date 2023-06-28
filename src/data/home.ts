@@ -5,7 +5,7 @@ export const personInitiators = [
   "Zuzana Suchová",
   "Michaela Benedigova",
   "Juraj Bartoš",
-  "Alžbeta Brozmanova",
+  "Alžbeta Brozmanová Gregorová",
   "Dominika Hradiská",
   "Romana Umrianová",
   "Milan Šemelák",
