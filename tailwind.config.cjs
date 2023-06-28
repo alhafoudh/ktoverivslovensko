@@ -15,6 +15,9 @@ module.exports = {
         accent: '#e6e6ff',
         separator: '#9999ff',
       },
+      scale: {
+        '-100': '-1',
+      }
     },
     screens: {
       'tablet': '834px',

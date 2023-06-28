@@ -1,3 +1,15 @@
+.logo {
+  @apply absolute left-0 top-0 w-full h-full;
+}
+
+a {
+  &:hover {
+    .logo {
+      @apply rotate-180 -scale-x-100;
+    }
+  }
+}
+
 .link {
   &:hover {
     @apply text-secondary;
