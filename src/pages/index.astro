@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import {
-  beliefModalFormUrl,
   companyInitiators,
   donationUrl, generatePollCalendarUrl,
   personInitiators,
@@ -34,7 +33,7 @@ import Donations from "../components/Donations.astro";
         <li>Ak veríme, tak sa zapneme.</li>
       </ul>
     </section>
-    <section class="section section--without-separator">
+    <section id="zapnime_sa" class="section section--without-separator">
       <h2>Zapnime sa</h2>
       <p class="tablet:text-center">
         Poďme spolu robiť užitočné veci tak, aby sme dlhodobo posilňovali dôveru
@@ -58,14 +57,35 @@ import Donations from "../components/Donations.astro";
         </div>
         <div class="tablet:w-1/3 flex flex-col justify-center items-center gap-[20px]">
           <h3>Prevezmem zodpovednosť</h3>
-          <a class="button button--secondary w-full tablet:w-fit" href={generatePollCalendarUrl("2023-09-30", "2023-09-30", "Parlamentné voľby 2023", "")}
-            >Pôjdem voliť</a
-          >
+          <script type="module" hoist>
+            const observer = new IntersectionObserver((entries) => {
+              for (const entry of entries) {
+                if (!entry.isIntersecting) continue;
+                observer.disconnect();
+                import('add-to-calendar-button');
+              }
+            });
+            const instances = document.querySelectorAll('add-to-calendar-button');
+            for (const instance of instances) observer.observe(instance);
+          </script>
+          <add-to-calendar-button
+            name="Parlamentné voľby 2023"
+            startDate="2023-09-30"
+            endDate="2023-09-30"
+            timeZone="Europe/Bratislava"
+            options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
+            hideBackground
+            size="7"
+            label="Pôjdem voliť"
+          ></add-to-calendar-button>
+          <!--<a class="button button&#45;&#45;secondary w-full tablet:w-fit" href={generatePollCalendarUrl("2023-09-30", "2023-09-30", "Parlamentné voľby 2023", "")}-->
+          <!--  >Pôjdem voliť</a-->
+          <!--&gt;-->
         </div>
       </div>
     </section>
-    <section id="verime_v_slovensko" class="section">
-      <h2>Pozrite sa kto všetko už v Slovensko verí</h2>
+    <section id="pozri_kto_veri" class="section">
+      <h2>Pozrite sa, kto všetko už v Slovensko verí</h2>
       <p class="tablet:text-center tablet:stronger">
         Testimonialy osobností z rôznych oblastí:
       </p>
@@ -86,7 +106,8 @@ import Donations from "../components/Donations.astro";
         <template x-for="belief in beliefs" :key="belief.id">
           <div class="bg-violet-50 rounded-[8px] overflow-clip flex flex-col">
             <img
-              class="h-[188px] desktop:h-[135px] object-cover"
+              class="object-cover"
+              style="aspect-ratio: 1;"
               x-bind:src="belief.image"
             />
             <div class="p-[20px] flex flex-col gap-[16px]">
@@ -94,7 +115,7 @@ import Donations from "../components/Donations.astro";
               </div>
               <div
                 class="text-[16px] font-normal leading-none"
-                x-text="belief.city"
+                x-text="belief.organization"
               >
               </div>
               <p
@@ -111,7 +132,7 @@ import Donations from "../components/Donations.astro";
       <h2>V čo na Slovensku veríte vy?</h2>
       <Donations />
     </section>
-    <section id="iniciatorky_a_iniciatori" class="section">
+    <section id="kto_sme" class="section">
       <h2>Iniciátorky a iniciátori</h2>
       <p class="tablet:text-center">
         Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a

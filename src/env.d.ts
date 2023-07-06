@@ -15,7 +15,7 @@ declare global {
 export interface Belief {
   image: string;
   name: string;
-  city: string;
+  organization: string;
   text: string;
 }
 

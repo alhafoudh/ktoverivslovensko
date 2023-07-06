@@ -17,6 +17,7 @@
     "@types/alpinejs": "^3.0.0",
     "@vercel/kv": "^0.2.2",
     "@vercel/node": "^2.15.2",
+    "add-to-calendar-button": "^2.2.9",
     "alpinejs": "^3.0.0",
     "astro": "^2.6.5",
     "prettier": "^2.8.8",
