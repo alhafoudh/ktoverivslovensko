@@ -3,11 +3,12 @@ import type { Supporter } from "../env";
 export const personInitiators = [
   "Lucia Pašková",
   "Zuzana Suchová",
-  "Michaela Benedigova",
+  "Michaela Benedigová",
   "Juraj Bartoš",
   "Alžbeta Brozmanová Gregorová",
   "Dominika Hradiská",
   "Milan Šemelák",
+  "Tomáš Kriššák",
 ];
 
 export const companyInitiators = [
@@ -22,6 +23,9 @@ export const companyInitiators = [
   "Growni",
   "Nexteria",
   "ADMA",
+  "Chcem tu zostať",
+  "Sebavedomé Slovensko",
+  "Dásato – I AMbitious",
 ];
 
 export const supporters: Supporter[] = [
