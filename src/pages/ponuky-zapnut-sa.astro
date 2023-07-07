@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro";
     </section>
     <section
       class="section section--without-separator"
-      x-data="{ selectedCity: null, selectedDate: null, activities: $persist([]), selectedActivities: [], cities: [] }"
+      x-data="{ loading: false, selectedCity: null, selectedDate: null, activities: $persist([]), selectedActivities: [], cities: [] }"
       @reload="selectedActivities = activities.filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true).filter((activity) => selectedDate ? activity.date === selectedDate : true); cities = [...new Set(activities.map((activity) => activity.city))]; console.log(selectedActivities, selectedCity)"
     >
       <form>
@@ -32,13 +32,14 @@ import Layout from "../layouts/Layout.astro";
       </form>
       <div
         class="w-full text-center text-[24px] mt-[70px]"
-        x-show="selectedActivities.length === 0"
+        x-cloak
+        x-show="!loading && selectedActivities.length === 0"
       >Nenašli sa žiadne ponuky.
       </div>
       <div
         class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px] mt-[70px]"
         x-data=""
-        x-init="fetch('/api/activities').then(response => response.json()).then(data => { activities = data; $dispatch('reload'); })"
+        x-init="loading = true; fetch('/api/activities').then(response => response.json()).then(data => { activities = data; $dispatch('reload'); }).finally(() => loading = false)"
       >
         <template
           x-for="activity in selectedActivities"
