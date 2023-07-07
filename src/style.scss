@@ -119,6 +119,10 @@ nav {
 
 .section-wrapper {
   @apply px-[20px] tablet:px-[36px] desktop:px-[128px] max-w-[375px] tablet:max-w-screen-tablet desktop:max-w-screen-desktop mx-auto;
+
+  &--large {
+    @apply tablet:px-[40px] desktop:px-[80px];
+  }
 }
 
 .section {
@@ -149,7 +153,7 @@ nav {
     @apply pt-[0px] tablet:pt-[70px] border-t-0 border-transparent;
 
     > h1 {
-      @apply text-[50px] desktop:text-[70px] font-bold text-center;
+      @apply text-[50px] desktop:text-[70px] font-bold text-center leading-tight;
     }
 
     > p {
@@ -186,4 +190,19 @@ nav {
       }
     }
   }
+}
+
+.tile {
+  @apply relative bg-primary text-white min-w-[335px] max-w-[335px] tablet:max-w-[367px] desktop:max-w-[373px] px-[20px] py-[12px] rounded-[8px] text-[36px] font-semibold;
+
+  aspect-ratio: 1;
+
+  &:hover {
+    @apply bg-secondary;
+  }
+
+  background-image: url('data:image/svg+xml,<svg viewBox="0 0 45 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.951727 16.4958V13.3458H38.3917L28.0117 2.96581L30.0217 0.955813L44.0017 14.9358L30.0217 28.9158L28.0117 26.9058L38.4217 16.4958H0.951727Z" fill="white"/></svg>');
+  background-repeat: no-repeat;
+  background-position: bottom 20px right 20px;
+  background-size: 43px;
 }

@@ -3,13 +3,18 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="UI kit">
-  <div class="flex flex-col gap-10 p-10 w-64">
-    <a href="#" class="button">Podpor nás</a>
-    <a href="#" class="button button--secondary">Podpor nás</a>
-    <a href="#" class="button button--accent">Podpor nás</a>
-    <a href="#" class="button button--ghost">Podpor nás</a>
-    <input type="checkbox" class="checkbox" checked />
-    <input type="checkbox" class="checkbox" />
-    <div class="separator"></div>
+  <div class="flex flex-row gap-10 p-10">
+    <div class="flex flex-col gap-10 p-10 w-64">
+      <a href="#" class="button">Podpor nás</a>
+      <a href="#" class="button button--secondary">Podpor nás</a>
+      <a href="#" class="button button--accent">Podpor nás</a>
+      <a href="#" class="button button--ghost">Podpor nás</a>
+      <input type="checkbox" class="checkbox" checked />
+      <input type="checkbox" class="checkbox" />
+      <div class="separator"></div>
+    </div>
+    <div class="flex flex-col gap-10 p-10 w-full">
+      <a href="#" class="tile">Zapni sa na jeden deň</a>
+    </div>
   </div>
 </Layout>
