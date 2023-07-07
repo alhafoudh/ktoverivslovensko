@@ -63,6 +63,7 @@ import { donationAmounts, donationUrlWithAmount } from "../data/home";
   <div
     x-data="{ amount: $persist(0) }"
     x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
+    x-cloak
     x-show="amount > 0"
     x-transition
     class="text-[36px] font-light text-center"

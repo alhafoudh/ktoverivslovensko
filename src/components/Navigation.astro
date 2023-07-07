@@ -88,7 +88,7 @@ import { donationUrl } from "../data/home";
             -->
       </ul>
       <div class="w-[40px] h-full flex items-center justify-center">
-        <button class="desktop:hidden" @click="open = true" x-show="!open">
+        <button class="desktop:hidden" @click="open = true" x-cloak x-show="!open">
           <svg
             width="40"
             height="26"
@@ -103,7 +103,7 @@ import { donationUrl } from "../data/home";
               fill="white"></path>
           </svg>
         </button>
-        <button class="desktop:hidden" @click="open = false" x-show="open">
+        <button class="desktop:hidden" @click="open = false" x-cloak x-show="open">
           <svg
             width="31"
             height="31"
@@ -130,7 +130,7 @@ import { donationUrl } from "../data/home";
       </div>
     </div>
   </div>
-  <ul class="menu menu--mobile flex-col gap-[50px] py-[20px] px-[20px] w-full" x-show="open" x-transition>
+  <ul class="menu menu--mobile flex-col gap-[50px] py-[20px] px-[20px] w-full" x-cloak x-show="open" x-transition>
     <li>
       <a @click="open = false" href="/#verime_v_slovensko">Veríme v Slovensko</a>
     </li>
