@@ -7,19 +7,21 @@ export default async function handler(
   request: VercelRequest,
   response: VercelResponse
 ) {
+
+  // Beliefs
   const beliefsUrl = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries/?content_type=beliefs&order=sys.createdAt&access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`;
 
-  const data = await fetch(
+  const beliefsRawData = await fetch(
     beliefsUrl
   ).then((response) => response.json());
 
-  console.log(data);
-  const beliefs: Record<string, string>[] = data.items.map((item: any) => {
+  console.log(beliefsRawData);
+  const beliefs: Record<string, string>[] = beliefsRawData.items.map((item: any) => {
     let image = "";
 
     console.log(item);
     const avatarAssetId = item.fields.avatar?.sys?.id;
-    const avatarAsset = data.includes.Asset.find(
+    const avatarAsset = beliefsRawData.includes.Asset.find(
       (asset: any) => avatarAssetId && asset.sys.id === avatarAssetId
     );
     if (avatarAsset) {
@@ -38,6 +40,31 @@ export default async function handler(
 
   await kv.set("beliefs:data", JSON.stringify(beliefs));
   await kv.set("beliefs:updated_at", new Date().toISOString());
+
+  // Activities
+
+  const activitiesUrl = `https://dobrovolnictvo.onsinch.com/broadcast/v1/fetch`;
+
+  const activitiesRawData = await fetch(
+    activitiesUrl
+  ).then((response) => response.json());
+
+  const activities = activitiesRawData.map((activity: any) =>
+    ({
+      id: activity.slotId,
+      image: null,
+      title: activity.job,
+      date: activity.beginning.split(" ")[0],
+      time: activity.beginning.split(" ")[1].substring(0, 5),
+      location: `${activity.location_name}, ${activity.location_note}`,
+      city: activity.location_city,
+      position: null,
+      description: activity.description,
+      url: activity.link
+    }));
+
+  await kv.set("activities:data", JSON.stringify(activities));
+  await kv.set("activities:updated_at", new Date().toISOString());
 
   response.json({ status: "ok" });
 }

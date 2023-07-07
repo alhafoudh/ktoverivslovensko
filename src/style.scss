@@ -123,6 +123,10 @@ nav {
   &--large {
     @apply tablet:px-[40px] desktop:px-[80px];
   }
+
+  &--xlarge {
+    @apply tablet:px-[40px];
+  }
 }
 
 .section {
@@ -205,4 +209,58 @@ nav {
   background-repeat: no-repeat;
   background-position: bottom 20px right 20px;
   background-size: 43px;
+}
+
+form {
+  .form-input {
+    @apply flex flex-col gap-[10px];
+  }
+
+  select, input {
+    @apply appearance-none bg-white border-2 border-primary rounded-[6px] h-[60px] px-[18px] pr-[48px];
+    @apply text-[18px] font-medium;
+
+    background-image: url('data:image/svg+xml,<svg viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L0.669873 0.499999L9.33013 0.5L5 8Z" fill="blue"/></svg>');
+    background-size: 10px;
+    background-position: right 20px center;
+    background-repeat: no-repeat;
+
+    &[type="date"] {
+      @apply relative;
+      &::-webkit-inner-spin-button, &::-webkit-calendar-picker-indicator {
+        @apply bg-none absolute right-[2px] p-[14px] opacity-50;
+      }
+    }
+  }
+}
+
+.activity {
+  @apply bg-violet-50 rounded-[8px] overflow-clip flex flex-col;
+
+  img {
+    @apply object-cover;
+    aspect-ratio: 1;
+  }
+
+  .button {
+    @apply text-[18px] w-full;
+  }
+
+  .field {
+    @apply flex flex-col gap-[5px] w-full;
+
+    label {
+      @apply uppercase tracking-widest text-[12px];
+    }
+
+    span {
+      @apply text-[18px] font-bold leading-7;
+    }
+
+    &--light {
+      span {
+        @apply font-normal;
+      }
+    }
+  }
 }

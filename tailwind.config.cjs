@@ -13,6 +13,7 @@ module.exports = {
         primary: '#0000ff',
         secondary: '#ff0000',
         accent: '#e6e6ff',
+        label: '#8080ff',
         separator: '#9999ff',
       },
       scale: {
