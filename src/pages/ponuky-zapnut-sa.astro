@@ -69,9 +69,17 @@ import Layout from "../layouts/Layout.astro";
                 <label>Pozícia</label>
                 <span x-text="activity.position"></span>
               </div>
-              <div class="field field--light">
+              <div
+                class="field field--light"
+                x-data="{expanded: false}"
+              >
                 <label>Popis</label>
-                <span x-html="activity.description"></span>
+                <div>
+                  <span x-show="!expanded" x-html="activity.description.length > 100 ? `${activity.description.substring(0, 100)}...` : activity.description"></span>
+                  <span x-show="expanded" x-html="activity.description"></span>
+                  <a x-show="!expanded && activity.description.length > 100" class="link font-bold" href="#" @click.prevent="expanded = true">(viac)</a>
+                  <a x-show="expanded && activity.description.length > 100" class="link font-bold" href="#" @click.prevent="expanded = false">(menej)</a>
+                </div>
               </div>
             </div>
             <div class="p-[20px]">
