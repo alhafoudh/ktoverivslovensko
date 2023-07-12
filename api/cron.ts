@@ -60,7 +60,8 @@ export default async function handler(
       city: activity.location_city,
       position: null,
       description: activity.description,
-      url: activity.link
+      url: activity.link,
+      modifiedAt: activity.modified,
     }));
 
   await kv.set("activities:data", JSON.stringify(activities));

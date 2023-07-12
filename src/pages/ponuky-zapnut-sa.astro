@@ -10,7 +10,13 @@ import Layout from "../layouts/Layout.astro";
     <section
       class="section section--without-separator"
       x-data="{ loading: false, selectedCity: null, selectedDate: null, activities: $persist([]), selectedActivities: [], cities: [] }"
-      @reload="selectedActivities = activities.filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true).filter((activity) => selectedDate ? activity.date === selectedDate : true); cities = [...new Set(activities.map((activity) => activity.city))]; console.log(selectedActivities, selectedCity)"
+      @reload="
+      selectedActivities = activities
+        .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
+        .filter((activity) => selectedDate ? activity.date === selectedDate : true)
+        .sort((a, b) => `${a.date} ${a.time}` > `${b.date} ${b.time}` ? 1 : -1)
+
+      cities = [...new Set(activities.map((activity) => activity.city))];"
     >
       <form>
         <div class="flex gap-[15px]">
