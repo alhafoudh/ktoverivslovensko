@@ -59,12 +59,12 @@ import Layout from "../layouts/Layout.astro";
               </div>
               <div class="flex justify-between">
                 <div class="field">
-                  <label>Od</label>
-                  <span x-text="`${activity.date_from} ${activity.time_from}`"></span>
+                  <label>Dátum</label>
+                  <span x-text="activity.date_from"></span>
                 </div>
                 <div class="field">
-                  <label>Do</label>
-                  <span x-text="`${activity.date_to} ${activity.time_to}`"></span>
+                  <label>Čas</label>
+                  <span x-text="`${activity.time_from} - ${activity.time_to}`"></span>
                 </div>
               </div>
               <div class="field">

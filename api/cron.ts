@@ -43,6 +43,11 @@ export default async function handler(
 
   // Activities
 
+  const formatTime = (time: string) => {
+    const [h, m, _] = time.split(':')
+    return `${h}:${m}`;
+  };
+
   const activitiesUrl = `https://dobrovolnictvo.onsinch.com/broadcast/v1/fetch`;
 
   const activitiesRawData = await fetch(
@@ -59,10 +64,10 @@ export default async function handler(
       title: activity.job,
       utc_from: beginning.toISOString(),
       date_from: beginning.toLocaleDateString('sk'),
-      time_from: beginning.toLocaleTimeString('sk'),
+      time_from: formatTime(beginning.toLocaleTimeString('sk')),
       utc_to: ending.toISOString(),
       date_to: ending.toLocaleDateString('sk'),
-      time_to: ending.toLocaleTimeString('sk'),
+      time_to: formatTime(ending.toLocaleTimeString('sk')),
       location: `${activity.location_name}, ${activity.location_note}`,
       city: activity.location_city,
       position: null,
