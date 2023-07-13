@@ -16,7 +16,9 @@ import Layout from "../layouts/Layout.astro";
         .filter((activity) => selectedDate ? activity.date === selectedDate : true)
         .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1)
 
-      cities = [...new Set(activities.map((activity) => activity.city))];"
+      cities = [...new Set(activities.map((activity) => activity.city))]
+        .sort((a, b) => a.localeCompare(b))
+        "
     >
       <form>
         <div class="flex gap-[15px]">
@@ -24,7 +26,6 @@ import Layout from "../layouts/Layout.astro";
             <label for="city" class="uppercase text-label">Mesto</label>
             <select id="city" name="city" class="w-fit" x-model="selectedCity" x-effect="$dispatch('reload')">
               <option value="">Všetky mestá</option>
-              <option :value="'Žilina'">Zilina</option>
               <template x-for="c in cities" :key="c">
                 <option x-text="c" :value="c"></option>
               </template>
