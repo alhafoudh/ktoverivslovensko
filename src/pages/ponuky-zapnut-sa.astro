@@ -14,7 +14,7 @@ import Layout from "../layouts/Layout.astro";
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
         .filter((activity) => selectedDate ? activity.date === selectedDate : true)
-        .sort((a, b) => `${a.date} ${a.time}` > `${b.date} ${b.time}` ? 1 : -1)
+        .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1)
 
       cities = [...new Set(activities.map((activity) => activity.city))];"
     >
