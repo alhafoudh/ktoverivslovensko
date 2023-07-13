@@ -49,20 +49,28 @@ export default async function handler(
     activitiesUrl
   ).then((response) => response.json());
 
-  const activities = activitiesRawData.map((activity: any) =>
-    ({
+  const activities = activitiesRawData.map((activity: any) => {
+    const beginning = new Date(activity.beginning.replace(' ', 'T') + "Z");
+    const ending = new Date(activity.end.replace(' ', 'T') + "Z");
+
+    return {
       id: activity.slotId,
       image: null,
       title: activity.job,
-      date: activity.beginning.split(" ")[0],
-      time: activity.beginning.split(" ")[1].substring(0, 5),
+      utc_from: beginning.toISOString(),
+      date_from: beginning.toLocaleDateString('sk'),
+      time_from: beginning.toLocaleTimeString('sk'),
+      utc_to: ending.toISOString(),
+      date_to: ending.toLocaleDateString('sk'),
+      time_to: ending.toLocaleTimeString('sk'),
       location: `${activity.location_name}, ${activity.location_note}`,
       city: activity.location_city,
       position: null,
       description: activity.description,
       url: activity.link,
-      modifiedAt: activity.modified,
-    }));
+      modifiedAt: activity.modified
+    };
+  });
 
   await kv.set("activities:data", JSON.stringify(activities));
   await kv.set("activities:updated_at", new Date().toISOString());
