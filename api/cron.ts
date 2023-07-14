@@ -72,6 +72,8 @@ export default async function handler(
       city: activity.location_city,
       position: null,
       description: activity.description,
+      size: Number.parseInt(activity.size),
+      attendance_count: activity.attendanceCount,
       url: activity.link,
       modifiedAt: activity.modified
     };
