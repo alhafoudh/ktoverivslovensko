@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 .logo {
   @apply absolute left-0 top-0 w-full h-full;
 }
@@ -23,7 +26,6 @@ a {
   &:hover {
     @apply bg-secondary;
   }
-
 
   &:focus {
     @apply outline-none;
@@ -216,7 +218,8 @@ form {
     @apply flex flex-col gap-[10px];
   }
 
-  select, input {
+  select,
+  input {
     @apply appearance-none bg-white border-2 border-primary rounded-[6px] h-[60px] px-[18px] pr-[48px];
     @apply text-[18px] font-medium;
 
@@ -227,7 +230,8 @@ form {
 
     &[type="date"] {
       @apply relative;
-      &::-webkit-inner-spin-button, &::-webkit-calendar-picker-indicator {
+      &::-webkit-inner-spin-button,
+      &::-webkit-calendar-picker-indicator {
         @apply bg-none absolute right-[2px] p-[14px] opacity-50;
       }
     }
