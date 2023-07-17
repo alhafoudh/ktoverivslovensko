@@ -39,6 +39,10 @@ h6 {
     }
   }
 
+  &--secondary {
+    @apply bg-secondary;
+  }
+
   &__content {
     @apply w-full max-w-screen-mobile tablet:max-w-screen-desktop px-[16px] tablet:px-[32px] mx-auto;
 
