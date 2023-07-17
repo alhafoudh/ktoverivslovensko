@@ -44,21 +44,21 @@ import Donations from "../components/Donations.astro";
           <div
             class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
           >
-            <h3 class="mb-[50px]">Podporím</h3>
+            <h3 class="mb-[50px] text-[32px] font-medium text-primary">Podporím</h3>
             <a class="button button--primary" href={donationUrl}>Darujem</a>
           </div>
 
           <div
             class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
           >
-            <h3 class="mb-[50px]">Urobím</h3>
+            <h3 class="mb-[50px] text-[32px] font-medium text-primary">Urobím</h3>
             <a class="button button--primary" href="/zapni-sa">Vyberiem si</a>
           </div>
 
           <div
             class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
           >
-            <h3 class="mb-[50px]">Prevezmem zodpovednosť</h3>
+            <h3 class="mb-[50px] text-[32px] font-medium text-primary">Prevezmem zodpovednosť</h3>
 
             <script type="module" hoist>
               const observer = new IntersectionObserver(entries => {
@@ -86,37 +86,35 @@ import Donations from "../components/Donations.astro";
       </div>
     </section>
 
-    <section id="pozri_kto_veri" class="section">
-      <h2>Pozrite sa, kto všetko už v Slovensko verí</h2>
-      <p class="tablet:text-center tablet:stronger">Testimonialy osobností z rôznych oblastí:</p>
-      <!--
-      <div class="mx-auto">
-        <a
-          class="button button--secondary"
-          href={beliefModalFormUrl}
-          target="_blank">Dajte nám vediet</a
+    <section id="pozri_kto_veri" class="section section--primary">
+      <div class="section__content">
+        <h2>Pozrite sa, kto všetko už v Slovensko verí</h2>
+
+        <div
+          class="mt-[110px] grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px]"
+          x-data="{ beliefs: $persist([]) }"
+          x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
         >
-      </div>
-      -->
-      <div
-        class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px]"
-        x-data="{ beliefs: $persist([]) }"
-        x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
-      >
-        <template x-for="belief in beliefs" :key="belief.id">
-          <div class="bg-violet-50 rounded-[8px] overflow-clip flex flex-col">
-            <img class="object-cover" style="aspect-ratio: 1;" x-bind:src="belief.image" />
-            <div class="p-[20px] flex flex-col gap-[16px]">
-              <div class="text-[18px] font-bold leading-7" x-text="belief.name"></div>
-              <div class="text-[16px] font-normal leading-none" x-text="belief.organization"></div>
-              <p class="text-[16px] font-semibold leading-relaxed" x-text="belief.text"></p>
+          <template x-for="belief in beliefs" :key="belief.id">
+            <div class="bg-white rounded-[8px] overflow-clip flex flex-col">
+              <img class="object-cover" style="aspect-ratio: 1;" x-bind:src="belief.image" />
+
+              <div class="p-[24px]">
+                <div
+                  class="font-accent text-primary text-[32px] font-medium leading-snug uppercase tracking-[-1px]"
+                  x-text="belief.name"
+                >
+                </div>
+                <div class="mt-[12px] text-[18px] leading-snug" x-text="belief.organization"></div>
+                <p class="mt-[24px] text-[18px] font-bold leading-normal" x-text="belief.text"></p>
+              </div>
             </div>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
     </section>
 
-    <section class="section section--without-separator p-0">
+    <section class="section">
       <h2>V čo na Slovensku veríte vy?</h2>
       <Donations />
     </section>
