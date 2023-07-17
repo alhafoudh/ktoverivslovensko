@@ -3,6 +3,7 @@
 ## Setup
 
     yarn install
+    yarn run vercel env pull .env.development.local
 
 ## Development
 
