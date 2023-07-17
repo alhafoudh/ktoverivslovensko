@@ -107,7 +107,7 @@ h6 {
 }
 
 .tile {
-  @apply relative w-full h-full min-w-[335px] max-w-[335px] tablet:max-w-[367px] desktop:max-w-[373px] px-[20px] py-[12px];
+  @apply relative w-full h-full max-w-[335px] tablet:max-w-[367px] desktop:max-w-[373px] px-[20px] py-[12px];
   @apply text-primary text-[36px] font-semibold bg-violet-100  rounded-[8px];
   @apply justify-self-center tablet:odd:justify-self-end tablet:even:justify-self-start desktop:odd:justify-self-center desktop:even:justify-self-center;
   @apply after:block after:w-[46px] after:h-[46px] after:absolute after:bottom-[16px] after:right-[24px];
