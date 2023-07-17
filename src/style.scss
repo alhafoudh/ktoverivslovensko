@@ -37,6 +37,14 @@ h6 {
         @apply text-white;
       }
 
+      h1 {
+        @apply text-white;
+
+        strong {
+          @apply text-secondary;
+        }
+      }
+
       > h2 {
         @apply text-white;
       }
@@ -86,10 +94,36 @@ h6 {
       @apply text-[24px] leading-normal;
     }
 
+    h1 {
+      @apply text-[80px] font-bold leading-tight tracking-[-2.4px];
+    }
+
     > h2 {
       @apply text-[64px] font-bold text-center;
     }
   }
+}
+
+.tile {
+  @apply relative w-full h-full min-w-[335px] max-w-[335px] tablet:max-w-[367px] desktop:max-w-[373px] px-[20px] py-[12px];
+  @apply text-primary text-[36px] font-semibold bg-violet-100  rounded-[8px];
+  @apply justify-self-center tablet:odd:justify-self-end tablet:even:justify-self-start desktop:odd:justify-self-center desktop:even:justify-self-center;
+  @apply after:block after:w-[46px] after:h-[46px] after:absolute after:bottom-[16px] after:right-[24px];
+
+  aspect-ratio: 1;
+
+  &::after {
+    content: url('data:image/svg+xml,<svg viewBox="0 0 45 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.951727 16.4958V13.3458H38.3917L28.0117 2.96581L30.0217 0.955813L44.0017 14.9358L30.0217 28.9158L28.0117 26.9058L38.4217 16.4958H0.951727Z" fill="%235f1fc2"/></svg>');
+  }
+
+  &:hover {
+    @apply bg-violet-200;
+  }
+
+  /* background-image: url();
+  background-repeat: no-repeat;
+  background-position: bottom 20px right 20px;
+  background-size: 43px; */
 }
 
 /* .logo {
@@ -253,21 +287,6 @@ nav {
       }
     }
   }
-}
-
-.tile {
-  @apply relative bg-primary text-white min-w-[335px] max-w-[335px] tablet:max-w-[367px] desktop:max-w-[373px] px-[20px] py-[12px] rounded-[8px] text-[36px] font-semibold;
-
-  aspect-ratio: 1;
-
-  &:hover {
-    @apply bg-secondary;
-  }
-
-  background-image: url('data:image/svg+xml,<svg viewBox="0 0 45 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.951727 16.4958V13.3458H38.3917L28.0117 2.96581L30.0217 0.955813L44.0017 14.9358L30.0217 28.9158L28.0117 26.9058L38.4217 16.4958H0.951727Z" fill="white"/></svg>');
-  background-repeat: no-repeat;
-  background-position: bottom 20px right 20px;
-  background-size: 43px;
 }
 
 form {
