@@ -15,7 +15,7 @@ h6 {
 }
 
 .button {
-  @apply inline-block font-accent text-[30px] uppercase leading-none py-[14px] px-[28px] rounded-[8px];
+  @apply inline-block font-accent text-[30px] text-center uppercase leading-none py-[14px] px-[28px] rounded-[8px] cursor-pointer;
 
   &--primary {
     @apply text-secondary bg-primary;
