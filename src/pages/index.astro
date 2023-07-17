@@ -125,15 +125,15 @@ import Donations from "../components/Donations.astro";
       <div class="section__content">
         <h2>Iniciátorky a iniciátori</h2>
 
-        <p class="mt-[80px] text-white tablet:text-center font-light">
+        <p class="mt-[80px] tablet:text-center font-light">
           Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a iniciatívy, ktorí veríme v Slovensko.
         </p>
 
-        <p class="mt-[40px] text-white tablet:text-center font-medium">
+        <p class="mt-[40px] tablet:text-center font-medium">
           {personInitiators.join(" • ")}
         </p>
 
-        <p class="mt-[40px] text-white tablet:text-center font-medium">
+        <p class="mt-[40px] tablet:text-center font-medium">
           {companyInitiators.join(" • ")}
         </p>
       </div>
@@ -157,15 +157,20 @@ import Donations from "../components/Donations.astro";
       </div>
     </section>
 
-    <section id="kontakt" class="section">
-      <h2>Kontakt</h2>
-      <p class="tablet:text-center">Ďakujeme, že veríte v Slovensko.</p>
-      <p class="tablet:text-center">
-        Email: <a class="link font-semibold" href="mailto:ahoj@zapnisa.sk">ahoj@zapnisa.sk</a>
-      </p>
-      <p class="tablet:text-center">
-        Pre média: <a class="link font-semibold" href="mailto:media@zapnisa.sk">media@zapnisa.sk</a>
-      </p>
+    <section id="kontakt" class="section section--primary pt-[80px]">
+      <div class="section__content">
+        <h2>Kontakt</h2>
+
+        <p class="mt-[40px] font-light tablet:text-center">Ďakujeme, že veríte v Slovensko.</p>
+
+        <p class="mt-[20px] font-light tablet:text-center">
+          Email: <a class="link font-semibold" href="mailto:ahoj@zapnisa.sk">ahoj@zapnisa.sk</a>
+        </p>
+
+        <p class="mt-[20px] font-light tablet:text-center">
+          Pre média: <a class="link font-semibold" href="mailto:media@zapnisa.sk">media@zapnisa.sk</a>
+        </p>
+      </div>
     </section>
 
     <section class="section">

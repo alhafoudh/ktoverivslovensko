@@ -29,7 +29,11 @@ h6 {
     @apply bg-primary;
 
     & .section__content {
-      h2 {
+      > p {
+        @apply text-white;
+      }
+
+      > h2 {
         @apply text-white;
       }
     }
@@ -39,7 +43,7 @@ h6 {
     @apply w-full max-w-screen-mobile tablet:max-w-screen-desktop px-[16px] tablet:px-[32px] mx-auto;
 
     > p {
-      @apply text-[24px] leading-normal;
+      @apply text-[24px] leading-normal text-primary;
     }
 
     > h2 {
