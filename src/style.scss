@@ -136,15 +136,10 @@ nav {
     }
 
     &.menu--primary {
-      .link {
-      }
     }
 
     &.menu--mobile {
       @apply desktop:hidden;
-
-      .link {
-      }
     }
   }
 }
