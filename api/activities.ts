@@ -8,6 +8,5 @@ export default async function handler(
   response: VercelResponse
 ) {
   const activities = (await kv.get("activities:data")) as Record<string, string>[];
-  console.log(activities);
   response.json(activities || []);
 }

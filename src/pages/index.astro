@@ -65,30 +65,44 @@ import toggle from "/images/toggle.svg";
 
           <div
             class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
+            x-data=""
           >
             <h3 class="mb-[50px] text-[32px] font-medium text-primary">Prevezmem zodpovednosť</h3>
 
-            <script type="module" hoist>
-              const observer = new IntersectionObserver(entries => {
-                for (const entry of entries) {
-                  if (!entry.isIntersecting) continue;
-                  observer.disconnect();
-                  import("add-to-calendar-button");
-                }
-              });
-              const instances = document.querySelectorAll("add-to-calendar-button");
-              for (const instance of instances) observer.observe(instance);
-            </script>
+            <button class="button button--primary" @click="$refs.voteModal.showModal()">Pôjdem voliť</button>
 
-            <add-to-calendar-button
-              name="Parlamentné voľby 2023"
-              startDate="2023-09-30"
-              endDate="2023-09-30"
-              timeZone="Europe/Bratislava"
-              options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
-              hideBackground
-              size="7"
-              label="Pôjdem voliť"></add-to-calendar-button>
+            <dialog x-ref="voteModal" class="vote-modal">
+              <div class="flex justify-end mb-[20px]">
+                <button @click="$refs.voteModal.close()">
+                  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="1.14217" y1="1.14214" x2="29.4264" y2="29.4264" stroke="black" stroke-width="2"></line>
+                    <line x1="29.4263" y1="1.14213" x2="1.14207" y2="29.4264" stroke="black" stroke-width="2"></line>
+                  </svg>
+                </button>
+              </div>
+              <script type="module" hoist>
+                const observer = new IntersectionObserver(entries => {
+                  for (const entry of entries) {
+                    if (!entry.isIntersecting) continue;
+                    observer.disconnect();
+                    import("add-to-calendar-button");
+                  }
+                });
+                const instances = document.querySelectorAll("add-to-calendar-button");
+                for (const instance of instances) observer.observe(instance);
+              </script>
+
+              <add-to-calendar-button
+                name="Parlamentné voľby 2023"
+                startDate="2023-09-30"
+                endDate="2023-09-30"
+                timeZone="Europe/Bratislava"
+                options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
+                hideBackground
+                buttonsList
+                size="7"
+                label="Pridať do kalendára"></add-to-calendar-button>
+            </dialog>
           </div>
         </div>
       </div>

@@ -6,6 +6,5 @@ export default async function handler(
   response: VercelResponse
 ) {
   const beliefs = (await kv.get("beliefs:data")) as Record<string, string>[];
-  console.log(beliefs);
   response.json(beliefs || []);
 }
