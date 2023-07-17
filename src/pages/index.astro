@@ -2,32 +2,39 @@
 import Layout from "../layouts/Layout.astro";
 import { companyInitiators, donationUrl, personInitiators, supporters } from "../data/home";
 import Donations from "../components/Donations.astro";
+import toggle from "/images/toggle.svg";
 ---
 
 <Layout>
   <main>
-    <div class="tablet:hidden">
-      <section class="section section--without-separator py-[20px]">
-        <a class="button button--ghost" href={donationUrl}>Darovať teraz</a>
-      </section>
-    </div>
+    <section class="tablet:hidden section section--secondary py-[40px]">
+      <div class="section__content text-center">
+        <a class="button button--primary" href={donationUrl}>Darovať teraz</a>
+      </div>
+    </section>
 
     <section class="section section--hero">
-      <h1>Veríš v Slovensko?</h1>
-      <p class="text-center">
-        Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisti voči inakosti… to všetko okrem iného
-        spôsobuje, že v
-        <span class="font-bold">Slovensko</span> v skutočnosti <span class="font-bold">verí</span> veľmi <span
-          class="font-bold">málo ľudí</span
-        >.
-      </p>
-      <h2 class="mt-[30px]">Poďme si navzájom vrátiť vieru v Slovensko</h2>
-      <ul>
-        <li>Pretože ak veríme, tak sa zaujímame.</li>
-        <li>Pretože ak veríme, tak niečo dobré urobíme.</li>
-        <li>Pretože ak veríme, tak neodídeme.</li>
-        <li>Ak veríme, tak sa zapneme.</li>
-      </ul>
+      <div class="section__content">
+        <h1>Veríš v Slovensko?</h1>
+
+        <p class="mt-[24px]">
+          Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisti voči inakosti… to všetko okrem iného
+          spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí.
+        </p>
+
+        <h2 class="mt-[24px]">Poďme si navzájom vrátiť vieru v Slovensko!</h2>
+
+        <ul class="mt-[8px]">
+          <li>Pretože ak veríme, <strong>tak sa zaujímame</strong>.</li>
+          <li>Pretože ak veríme, <strong>tak niečo dobré urobíme</strong>.</li>
+          <li>Pretože ak veríme, <strong>tak neodídeme</strong>.</li>
+          <li>Ak veríme, <strong>tak sa zapneme</strong>.</li>
+        </ul>
+
+        <a class="button button--secondary mt-[48px] inline-flex items-center gap-[10px]" href="/"
+          >Zapnime sa <img class="inline" src={toggle} /></a
+        >
+      </div>
     </section>
 
     <section id="zapnime_sa" class="section">
