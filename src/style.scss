@@ -15,14 +15,16 @@ h6 {
 }
 
 .button {
-  @apply inline-block font-accent text-[30px] font-bold text-center uppercase leading-none py-[14px] px-[28px] rounded-[8px] cursor-pointer;
+  @apply inline-block py-[14px] px-[28px] rounded-[8px] cursor-pointer transition-colors focus:outline-none;
+  @apply font-accent text-[30px] font-bold text-center uppercase leading-none;
+  @apply focus:ring-2 focus:ring-offset-[3px];
 
   &--primary {
-    @apply text-secondary bg-primary;
+    @apply text-secondary bg-primary hover:bg-violet-600  focus:ring-primary  focus:ring-offset-secondary;
   }
 
   &--secondary {
-    @apply text-primary bg-secondary;
+    @apply text-primary bg-secondary hover:bg-white focus:ring-secondary focus:ring-offset-primary;
   }
 }
 
