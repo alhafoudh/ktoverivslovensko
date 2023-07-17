@@ -1,7 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
-.logo {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-accent uppercase;
+}
+
+.button {
+  @apply inline-block font-accent text-[30px] uppercase leading-none py-[14px] px-[28px] rounded-[8px];
+
+  &--primary {
+    @apply text-secondary bg-primary;
+  }
+}
+
+.section {
+  &--primary {
+    @apply bg-primary;
+  }
+
+  &__content {
+    @apply w-full max-w-screen-mobile tablet:max-w-screen-desktop px-[16px] tablet:px-[32px] py-[142px] mx-auto;
+
+    p {
+      @apply text-[24px] leading-normal;
+    }
+
+    h2 {
+      @apply text-[64px] font-bold text-primary text-center;
+    }
+
+    h3 {
+      @apply text-[32px] font-semibold text-primary;
+    }
+  }
+}
+
+/* .logo {
   @apply absolute left-0 top-0 w-full h-full;
 }
 
@@ -267,7 +310,7 @@ form {
       }
     }
   }
-}
+} */
 
 [x-cloak] {
   display: none !important;
