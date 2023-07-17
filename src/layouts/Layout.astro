@@ -1,5 +1,9 @@
 ---
-import "@fontsource-variable/manrope";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import "@fontsource-variable/antonio";
 import "../style.scss";
 import Gtag from "../components/Gtag.astro";
 import Navigation from "../components/Navigation.astro";
@@ -13,8 +17,10 @@ export interface Props {
 
 const siteName = "Zapni sa pre Slovensko";
 const defaultTitle = siteName;
-const defaultDescription = "Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisť voči inakosti… to všetko okrem iného spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí. Poďme si navzájom vrátiť vieru v Slovensko!";
-const defaultKeywords = "Slovensko, Hnev voči nefungujúcemu štátu, Kolaps zdravotníctva, Veríme v Slovensko, Navrátenie viery v Slovensko, Zaujímanie o Slovensko, Obava z kolapsu zdravotníctva, Nenávisť voči inakosti, Zapnutie sa pre Slovensko, Nízka viera v Slovensko, Zapoj sa a zmenme Slovensko, Kampan pre vieru v Slovensko, Hnev a obava voči štátu, Posilnenie viery v Slovensko, Slovensko potrebuje náš hlas, Zachovajme vieru v Slovensko, Zlepšime Slovensko spolu, Verme v Slovensko a jeho budúcnosť, Boj za lepšie Slovensko, Aktívne zapojenie sa pre Slovensko";
+const defaultDescription =
+  "Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisť voči inakosti… to všetko okrem iného spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí. Poďme si navzájom vrátiť vieru v Slovensko!";
+const defaultKeywords =
+  "Slovensko, Hnev voči nefungujúcemu štátu, Kolaps zdravotníctva, Veríme v Slovensko, Navrátenie viery v Slovensko, Zaujímanie o Slovensko, Obava z kolapsu zdravotníctva, Nenávisť voči inakosti, Zapnutie sa pre Slovensko, Nízka viera v Slovensko, Zapoj sa a zmenme Slovensko, Kampan pre vieru v Slovensko, Hnev a obava voči štátu, Posilnenie viery v Slovensko, Slovensko potrebuje náš hlas, Zachovajme vieru v Slovensko, Zlepšime Slovensko spolu, Verme v Slovensko a jeho budúcnosť, Boj za lepšie Slovensko, Aktívne zapojenie sa pre Slovensko";
 
 const { ...current } = Astro.props;
 

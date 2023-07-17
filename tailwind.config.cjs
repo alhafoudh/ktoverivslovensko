@@ -10,13 +10,11 @@ module.exports = {
         "system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
-        '"Segoe UI"',
-        '"Helvetica Neue"',
-        "Arial",
-        '"Noto Sans"',
+        "Segoe UI",
+        "Helvetica Neue",
         "sans-serif",
       ],
-      accent: "Antonio",
+      accent: "Antonio Variable",
     },
     extend: {
       colors: {
