@@ -9,6 +9,12 @@ export const personInitiators = [
   "Dominika Hradiská",
   "Milan Šemelák",
   "Tomáš Kriššák",
+  "Kristína Felová",
+  "Romana Umrianová",
+  "Jana Mračnová",
+  "Jakub Ptačin",
+  "Milan Marcinčo",
+  "Ahmed Al Hafoudh",
 ];
 
 export const companyInitiators = [
@@ -26,6 +32,10 @@ export const companyInitiators = [
   "Chcem tu zostať",
   "Sebavedomé Slovensko",
   "Dásato – I AMbitious",
+  "Studio Echt",
+  "freevision",
+  "Veselé paradajky",
+  "Bystriny",
 ];
 
 export const supporters: Supporter[] = [
@@ -75,5 +85,4 @@ export const donationUrl = "https://www.donio.sk/prispevok/2479";
 
 export const donationAmounts = [10, 25, 50];
 
-export const donationUrlWithAmount = (amount: number | "") =>
-  `https://www.donio.sk/prispevok/2479?amount=${amount}`;
+export const donationUrlWithAmount = (amount: number | "") => `https://www.donio.sk/prispevok/2479?amount=${amount}`;

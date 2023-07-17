@@ -3,14 +3,16 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div class="section-wrapper section-wrapper--xlarge">
-    <section class="section section--hero">
-      <h1>Ponuky zapnúť sa</h1>
-    </section>
-    <section
-      class="section section--without-separator"
-      x-data="{ loading: false, selectedCity: null, selectedDate: null, activities: $persist([]), selectedActivities: [], cities: [] }"
-      @reload=`
+  <section class="section section--hero pt-[70px] pb-[80px]">
+    <div class="section__content">
+      <h1 class="text-center tablet:text-left">Ponuky <strong>zapnúť sa</strong></h1>
+    </div>
+  </section>
+
+  <section
+    class="section"
+    x-data="{ loading: false, selectedCity: null, selectedDate: null, activities: $persist([]), selectedActivities: [], cities: [] }"
+    @reload=`
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
         .filter((activity) => selectedDate ? activity.date === selectedDate : true)
@@ -19,88 +21,136 @@ import Layout from "../layouts/Layout.astro";
       cities = [...new Set(activities.map((activity) => activity.city))]
         .sort((a, b) => a.localeCompare(b))
       `
-    >
+  >
+    <div class="section__content">
       <form>
-        <div class="flex gap-[15px]">
+        <div class="flex flex-col tablet:flex-row gap-[32px]">
           <div class="form-input">
-            <label for="city" class="uppercase text-label">Mesto</label>
-            <select id="city" name="city" class="w-fit" x-model="selectedCity" x-effect="$dispatch('reload')">
+            <label for="city" class="uppercase text-primary">Mesto</label>
+
+            <select id="city" name="city" x-model="selectedCity" x-effect="$dispatch('reload')">
               <option value="">Všetky mestá</option>
+
               <template x-for="c in cities" :key="c">
                 <option x-text="c" :value="c"></option>
               </template>
             </select>
           </div>
+
           <div class="form-input">
-            <label for="date" class="uppercase text-label">Dátum</label>
-            <input id="date" name="date" type="date" class="w-fit" x-model="selectedDate" x-effect="$dispatch('reload')" />
+            <label for="date" class="uppercase text-primary">Dátum</label>
+            <input id="date" name="date" type="date" x-model="selectedDate" x-effect="$dispatch('reload')" />
           </div>
         </div>
       </form>
+
       <div
         class="w-full text-center text-[24px] mt-[70px]"
         x-cloak
         x-show="!loading && selectedActivities.length === 0"
-      >Nenašli sa žiadne ponuky.
+      >
+        Nenašli sa žiadne ponuky.
       </div>
+
       <div
-        class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-[20px] mt-[70px]"
+        class="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px] mt-[70px]"
         x-data=""
         x-init="loading = true; fetch('/api/activities').then(response => response.json()).then(data => { activities = data; $dispatch('reload'); }).finally(() => loading = false)"
       >
-        <template
-          x-for="activity in selectedActivities"
-          :key="activity.id">
+        <template x-for="activity in selectedActivities" :key="activity.id">
           <div class="activity">
             <img x-bind:src="activity.image" x-show="activity.image" />
-            <div class="p-[20px] flex flex-col gap-[16px] grow">
+
+            <div class="p-[16px] flex flex-col gap-[16px] grow">
               <div class="field">
                 <label>Aktivita</label>
                 <span x-text="activity.title"></span>
               </div>
+
               <div class="flex justify-between">
                 <div class="field">
                   <label>Dátum</label>
                   <span x-text="activity.date_from"></span>
                 </div>
+
                 <div class="field">
                   <label>Čas</label>
                   <span x-text="`${activity.time_from} - ${activity.time_to}`"></span>
                 </div>
               </div>
-              <div class="field">
+
+              <div class="field" x-data="{expanded: false}">
                 <label>Miesto</label>
-                <span x-text="activity.location"></span>
+
+                <div>
+                  <span
+                    x-show="!expanded"
+                    x-html="activity.location.length > 100 ? `${activity.location.substring(0, 100)}...` : activity.location"
+                  ></span>
+
+                  <span x-show="expanded" x-html="activity.location"></span>
+
+                  <a
+                    x-show="!expanded && activity.location.length > 100"
+                    class="link"
+                    href="#"
+                    @click.prevent="expanded = true">(viac)</a
+                  >
+                  <a
+                    x-show="expanded && activity.location.length > 100"
+                    class="link"
+                    href="#"
+                    @click.prevent="expanded = false">(menej)</a
+                  >
+                </div>
               </div>
+
               <div class="field" x-show="activity.position">
                 <label>Pozícia</label>
                 <span x-text="activity.position"></span>
               </div>
-              <div
-                class="field field--light"
-                x-data="{expanded: false}"
-              >
+
+              <div class="field field--light" x-data="{expanded: false}">
                 <label>Popis</label>
+
                 <div>
-                  <span x-show="!expanded" x-html="activity.description.length > 100 ? `${activity.description.substring(0, 100)}...` : activity.description"></span>
+                  <span
+                    x-show="!expanded"
+                    x-html="activity.description.length > 100 ? `${activity.description.substring(0, 100)}...` : activity.description"
+                  ></span>
+
                   <span x-show="expanded" x-html="activity.description"></span>
-                  <a x-show="!expanded && activity.description.length > 100" class="link font-bold" href="#" @click.prevent="expanded = true">(viac)</a>
-                  <a x-show="expanded && activity.description.length > 100" class="link font-bold" href="#" @click.prevent="expanded = false">(menej)</a>
+
+                  <a
+                    x-show="!expanded && activity.description.length > 100"
+                    class="link"
+                    href="#"
+                    @click.prevent="expanded = true">(viac)</a
+                  >
+                  <a
+                    x-show="expanded && activity.description.length > 100"
+                    class="link"
+                    href="#"
+                    @click.prevent="expanded = false">(menej)</a
+                  >
                 </div>
               </div>
+
               <div class="field">
                 <label>Obsadenosť</label>
+
                 <div>
                   <span x-text="activity.attendance_count"></span> / <span x-text="activity.size"></span>
                 </div>
               </div>
             </div>
-            <div class="p-[20px]">
-              <a class="button" href="https://dobrovolnictvo.onsinch.com">Chcem pomocť</a>
+
+            <div class="p-[16px]">
+              <a class="button button--primary-outlined" href="https://dobrovolnictvo.onsinch.com">Chcem pomocť</a>
             </div>
           </div>
         </template>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </Layout>
