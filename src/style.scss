@@ -28,6 +28,23 @@ h6 {
   }
 }
 
+nav {
+  .menu {
+    @apply flex gap-[24px] items-center;
+
+    .link {
+      @apply text-white text-[16px] font-medium leading-none hover:underline underline-offset-4;
+    }
+
+    &.menu--primary {
+    }
+
+    &.menu--mobile {
+      @apply desktop:hidden;
+    }
+  }
+}
+
 .section {
   @apply pt-[120px] pb-[80px];
 
@@ -194,23 +211,6 @@ a {
     background-position: center center;
   }
 } */
-
-nav {
-  .menu {
-    @apply flex gap-[24px] items-center;
-
-    .link {
-      @apply text-white text-[16px] font-medium leading-none;
-    }
-
-    &.menu--primary {
-    }
-
-    &.menu--mobile {
-      @apply desktop:hidden;
-    }
-  }
-}
 
 /* .section-wrapper {
   @apply px-[20px] tablet:px-[36px] desktop:px-[128px] max-w-[375px] tablet:max-w-screen-tablet desktop:max-w-screen-desktop mx-auto;
