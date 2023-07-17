@@ -84,6 +84,9 @@ export const supporters: Supporter[] =
       ]
     : [];
 
+export const beliefFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeyO4pwS0698OYq5DiOdEI7xhSHsIMlxl0R1hYMP48efYqNvA/viewform";
+
 export const donationUrl = "https://www.donio.sk/prispevok/2479";
 
 export const donationAmounts = [10, 25, 50];

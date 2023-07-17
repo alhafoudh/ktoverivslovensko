@@ -28,7 +28,7 @@
     }
 
     &--primary-outlined {
-      @apply text-primary bg-violet-100 border-2 border-solid border-primary hover:text-white hover:bg-primary focus:ring-primary focus:ring-offset-violet-100;
+      @apply text-primary bg-transparent border-2 border-solid border-primary hover:text-white hover:bg-primary focus:ring-primary focus:ring-offset-white;
     }
   }
 

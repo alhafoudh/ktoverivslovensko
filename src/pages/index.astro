@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { companyInitiators, donationUrl, personInitiators, supporters } from "../data/home";
+import { companyInitiators, beliefFormUrl, donationUrl, personInitiators, supporters } from "../data/home";
 import Donations from "../components/Donations.astro";
 import toggle from "/images/toggle.svg";
 ---
@@ -138,7 +138,12 @@ import toggle from "/images/toggle.svg";
 
     <section class="section">
       <div class="section__content">
-        <h2 class="mb-[100px]">V čo na Slovensku veríte vy?</h2>
+        <h2>V čo na Slovensku veríte vy?</h2>
+
+        <div class="mt-[40px] mb-[100px] text-center">
+          <a class="button button--primary-outlined" href={beliefFormUrl} target="_blank">Daj nám vedieť</a>
+        </div>
+
         <Donations />
       </div>
     </section>
