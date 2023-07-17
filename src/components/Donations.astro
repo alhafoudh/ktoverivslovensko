@@ -9,22 +9,25 @@ import { donationAmounts, donationUrlWithAmount } from "../data/home";
     x-data="{ amount: $el.dataset.defaultDontaionAmount }"
   >
     {
-      donationAmounts.map((amount, i) => (
+      donationAmounts.map(amount => (
         <div class="w-full relative">
           <input
             name="amount"
             id={`amount-${amount}`}
             type="radio"
             value={amount}
-            class="hidden peer"
+            class="absolute opacity-0 peer"
             x-model="amount"
           />
 
-          <img src="/images/check-mark.svg" class="absolute top-1/2 left-[20px] translate-y-[-50%]" />
+          <img
+            src="/images/check-mark.svg"
+            class="opacity-0 peer-checked:opacity-100 absolute top-1/2 left-[20px] translate-y-[-50%] transition-opacity"
+          />
 
           <label
             for={`amount-${amount}`}
-            class="button w-full text-primary bg-secondary border-2 border-solid border-primary  peer-checked:text-secondary peer-checked:bg-primary"
+            class="button w-full text-primary bg-secondary border-2 border-solid border-primary hover:text-secondary hover:bg-primary peer-focus:ring-primary  peer-focus:ring-offset-secondary peer-focus:ring-2 peer-focus:ring-offset-[3px] peer-checked:text-secondary peer-checked:bg-primary"
           >
             <span>{amount} &euro;</span>
           </label>
