@@ -79,9 +79,30 @@ import Layout from "../layouts/Layout.astro";
                 </div>
               </div>
 
-              <div class="field">
+              <div class="field" x-data="{expanded: false}">
                 <label>Miesto</label>
-                <span x-text="activity.location"></span>
+
+                <div>
+                  <span
+                    x-show="!expanded"
+                    x-html="activity.location.length > 100 ? `${activity.location.substring(0, 100)}...` : activity.location"
+                  ></span>
+
+                  <span x-show="expanded" x-html="activity.location"></span>
+
+                  <a
+                    x-show="!expanded && activity.location.length > 100"
+                    class="link"
+                    href="#"
+                    @click.prevent="expanded = true">(viac)</a
+                  >
+                  <a
+                    x-show="expanded && activity.location.length > 100"
+                    class="link"
+                    href="#"
+                    @click.prevent="expanded = false">(menej)</a
+                  >
+                </div>
               </div>
 
               <div class="field" x-show="activity.position">
@@ -97,16 +118,18 @@ import Layout from "../layouts/Layout.astro";
                     x-show="!expanded"
                     x-html="activity.description.length > 100 ? `${activity.description.substring(0, 100)}...` : activity.description"
                   ></span>
+
                   <span x-show="expanded" x-html="activity.description"></span>
+
                   <a
                     x-show="!expanded && activity.description.length > 100"
-                    class="link font-bold"
+                    class="link"
                     href="#"
                     @click.prevent="expanded = true">(viac)</a
                   >
                   <a
                     x-show="expanded && activity.description.length > 100"
-                    class="link font-bold"
+                    class="link"
                     href="#"
                     @click.prevent="expanded = false">(menej)</a
                   >

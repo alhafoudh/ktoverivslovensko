@@ -205,6 +205,10 @@
         }
       }
     }
+
+    .link {
+      @apply text-[14px] text-violet-400 hover:text-primary;
+    }
   }
 }
 
