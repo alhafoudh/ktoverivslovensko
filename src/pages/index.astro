@@ -91,7 +91,7 @@ import Donations from "../components/Donations.astro";
         <h2>Pozrite sa, kto všetko už v Slovensko verí</h2>
 
         <div
-          class="mt-[110px] grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px]"
+          class="mt-[100px] grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px]"
           x-data="{ beliefs: $persist([]) }"
           x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
         >
@@ -121,17 +121,22 @@ import Donations from "../components/Donations.astro";
       </div>
     </section>
 
-    <section id="kto_sme" class="section">
-      <h2>Iniciátorky a iniciátori</h2>
-      <p class="tablet:text-center">
-        Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a iniciatívy, ktorí veríme v Slovensko.
-      </p>
-      <p class="tablet:text-center stronger">
-        {personInitiators.join(" • ")}
-      </p>
-      <p class="tablet:text-center stronger">
-        {companyInitiators.join(" • ")}
-      </p>
+    <section id="kto_sme" class="section section--primary">
+      <div class="section__content">
+        <h2>Iniciátorky a iniciátori</h2>
+
+        <p class="mt-[80px] text-white tablet:text-center font-light">
+          Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a iniciatívy, ktorí veríme v Slovensko.
+        </p>
+
+        <p class="mt-[40px] text-white tablet:text-center font-medium">
+          {personInitiators.join(" • ")}
+        </p>
+
+        <p class="mt-[40px] text-white tablet:text-center font-medium">
+          {companyInitiators.join(" • ")}
+        </p>
+      </div>
     </section>
 
     <section id="podporovatelia" class="section">
