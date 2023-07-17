@@ -45,8 +45,10 @@ const gtagCode = import.meta.env.GTAG_CODE;
 
       Alpine.plugin(persist);
     </script>
+
+    <script defer src="/_vercel/insights/script.js"></script>
   </head>
-  
+
   <body class="text-primary">
     <Navigation />
     <slot />
