@@ -12,7 +12,9 @@ export const personInitiators = [
   "Kristína Felová",
   "Romana Umrianová",
   "Jana Mračnová",
+  "Jakub Ptačin",
   "Milan Marcinčo",
+  "Ahmed Al Hafoudh",
 ];
 
 export const companyInitiators = [
