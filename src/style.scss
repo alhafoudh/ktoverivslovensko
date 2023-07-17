@@ -15,7 +15,7 @@ h6 {
 }
 
 .button {
-  @apply inline-block py-[14px] px-[28px] rounded-[8px] cursor-pointer transition-colors focus:outline-none;
+  @apply inline-block w-full mobile:w-auto py-[14px] px-[28px] rounded-[8px] cursor-pointer transition-colors focus:outline-none;
   @apply font-accent text-[30px] font-bold text-center uppercase leading-none;
   @apply focus:ring-2 focus:ring-offset-[3px];
 
@@ -71,7 +71,7 @@ h6 {
       }
 
       > h1 {
-        @apply text-white text-[80px] font-bold leading-tight tracking-[-2.4px];
+        @apply text-white text-[56px] tablet:text-[80px] font-bold leading-tight tracking-[-2.4px];
       }
 
       > h2 {
@@ -97,11 +97,11 @@ h6 {
     }
 
     h1 {
-      @apply text-[80px] font-bold leading-tight tracking-[-2.4px];
+      @apply text-[56px] tablet:text-[80px] font-bold leading-tight tracking-[-2.4px];
     }
 
     > h2 {
-      @apply text-[64px] font-bold text-center;
+      @apply text-[42px] tablet:text-[64px] font-bold text-center;
     }
   }
 }
