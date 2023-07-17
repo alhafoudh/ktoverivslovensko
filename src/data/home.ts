@@ -38,48 +38,51 @@ export const companyInitiators = [
   "Bystriny",
 ];
 
-export const supporters: Supporter[] = [
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-  {
-    name: "Organizácia",
-    amount: "100 000,00 €",
-    note: "finančná pomoc",
-  },
-];
+export const supporters: Supporter[] =
+  process.env.MOCK_SUPPORTERS === "true"
+    ? [
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+        {
+          name: "Organizácia",
+          amount: "100 000,00 €",
+          note: "finančná pomoc",
+        },
+      ]
+    : [];
 
 export const donationUrl = "https://www.donio.sk/prispevok/2479";
 
