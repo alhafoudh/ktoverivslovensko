@@ -15,10 +15,14 @@ h6 {
 }
 
 .button {
-  @apply inline-block font-accent text-[30px] text-center uppercase leading-none py-[14px] px-[28px] rounded-[8px] cursor-pointer;
+  @apply inline-block font-accent text-[30px] font-bold text-center uppercase leading-none py-[14px] px-[28px] rounded-[8px] cursor-pointer;
 
   &--primary {
     @apply text-secondary bg-primary;
+  }
+
+  &--secondary {
+    @apply text-primary bg-secondary;
   }
 }
 
@@ -47,11 +51,11 @@ h6 {
     @apply w-full max-w-screen-mobile tablet:max-w-screen-desktop px-[16px] tablet:px-[32px] mx-auto;
 
     > p {
-      @apply text-[24px] leading-normal text-primary;
+      @apply text-[24px] leading-normal;
     }
 
     > h2 {
-      @apply text-[64px] font-bold text-primary text-center;
+      @apply text-[64px] font-bold text-center;
     }
   }
 }
@@ -121,60 +125,31 @@ a {
     background-repeat: no-repeat;
     background-position: center center;
   }
-}
+} */
 
 nav {
   .menu {
-    @apply flex gap-[20px] items-center;
+    @apply flex gap-[24px] items-center;
 
-    li {
-      a {
-        @apply text-white text-[16px] font-semibold leading-none;
-      }
+    .link {
+      @apply text-white text-[16px] font-medium leading-none;
     }
 
     &.menu--primary {
-      li {
-        a {
-          &.button {
-            @apply min-w-0 h-[36px];
-
-            &:hover {
-              @apply bg-white text-primary;
-            }
-
-            &--secondary {
-              @apply bg-white text-secondary;
-
-              &:hover {
-                @apply bg-primary text-white;
-              }
-            }
-          }
-        }
+      .link {
       }
     }
 
     &.menu--mobile {
       @apply desktop:hidden;
 
-      li {
-        a {
-          &.button {
-            @apply min-w-0 tablet:min-w-[335px] h-[60px];
-
-            &--ghost {
-              @apply text-white border-white bg-secondary;
-              @apply w-full tablet:w-0;
-            }
-          }
-        }
+      .link {
       }
     }
   }
 }
 
-.section-wrapper {
+/* .section-wrapper {
   @apply px-[20px] tablet:px-[36px] desktop:px-[128px] max-w-[375px] tablet:max-w-screen-tablet desktop:max-w-screen-desktop mx-auto;
 
   &--large {

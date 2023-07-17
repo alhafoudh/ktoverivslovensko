@@ -1,101 +1,47 @@
 ---
+import logo from "/images/logo.svg";
 import { donationUrl } from "../data/home";
 ---
 
-<nav class="bg-secondary flex flex-col items-center sticky top-0 z-10" x-data="{open: false}">
+<nav class="flex flex-col items-center sticky top-0 z-10 bg-primary" x-data="{open: false}">
   <div
-    class="h-[52px] mx-auto px-[20px] tablet:px-[40px] max-w-screen-desktop w-full flex justify-between items-center"
+    class="w-full max-w-screen-desktop h-[60px] tablet:h-[80px] px-[16px] tablet:px-[32px] mx-auto flex justify-between items-center"
   >
-    <a
-      class="text-white text-[22px] h-full font-bold leading-snug flex items-center gap-2"
-      href="/"
-    >
-      <div class="relative w-6 h-8">
-        <svg
-          class="logo"
-          viewBox="0 0 81 123"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#clip0_313_4)">
-            <path
-              d="M9.12891 1.5L9.12891 121.5H79.1289L79.1289 1.5H9.12891Z"
-              fill="white"
-              stroke="#0000FF"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M69.1289 11.5H19.1289V61.5H69.1289V11.5Z"
-              fill="#FF0000"
-              stroke="#0000FF"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M69.13 61.5H19.13L1.5 99.95L19.13 111.5H69.13V61.5Z"
-              fill="#FF0000"
-              stroke="#0000FF"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M69.13 61.5H19.13L1.5 99.95H51.5L69.13 61.5Z"
-              fill="#FF0000"
-              stroke="#0000FF"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M51.5 99.95L69.13 111.5"
-              stroke="#0000FF"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </g>
-          <defs>
-            <clipPath id="clip0_313_4">
-              <rect width="80.63" height="123" fill="white"></rect>
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
-
-      <span class="text-[20px] font-bold">Zapni sa pre Slovensko</span>
+    <a href="/">
+      <img class="block max-w-full max-h-full h-[40px] tablet:h-full" src={logo} />
     </a>
-    <div class="flex items-center gap-[40px]">
+
+    <div class="flex items-center gap-[32px] text-white">
+      <!-- Desktop menu -->
       <ul class="menu menu--primary">
         <li class="hidden desktop:inline">
-          <a href="/#zapnime_sa">Zapnime sa</a>
+          <a class="link" href="/#zapnime_sa">Zapnime sa</a>
         </li>
+
         <li class="hidden desktop:inline">
-          <a href="/#pozri_kto_veri">Pozri kto verí</a>
+          <a class="link" href="/#pozri_kto_veri">Pozri kto verí</a>
         </li>
+
         <li class="hidden desktop:inline">
-          <a href="/#kto_sme">Kto sme</a>
+          <a class="link" href="/#kto_sme">Kto sme</a>
         </li>
+
         <li class="hidden desktop:inline">
-          <a href="/#podporovatelia">Podporovatelia</a>
+          <a class="link" href="/#podporovatelia">Podporovatelia</a>
         </li>
-        <li class="hidden desktop:inline"><a href="/#kontakt">Kontakt</a></li>
+
+        <li class="hidden desktop:inline"><a class="link" href="/#kontakt">Kontakt</a></li>
+
+        <!-- Donate button -->
         <li class="hidden tablet:inline">
-          <a class="button" href={donationUrl}>Darovať teraz</a>
+          <a class="button button--secondary px-[18px] py-[14px] text-[16px]" href={donationUrl}>Darovať teraz</a>
         </li>
-        <!--
-            <li class="hidden desktop:inline">
-              <a class="button button--secondary" href="#">Prihláste sa</a>
-            </li>
-            -->
       </ul>
-      <div class="w-[40px] h-full flex items-center justify-center">
-        <button class="desktop:hidden" @click="open = true" x-cloak x-show="!open">
-          <svg
-            width="40"
-            height="26"
-            viewBox="0 0 40 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+
+      <!-- Open/Close buttons -->
+      <div class="desktop:hidden w-[40px] h-full flex items-center justify-center">
+        <button @click="open = true" x-cloak x-show="!open">
+          <svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -103,56 +49,37 @@ import { donationUrl } from "../data/home";
               fill="white"></path>
           </svg>
         </button>
-        <button class="desktop:hidden" @click="open = false" x-cloak x-show="open">
-          <svg
-            width="31"
-            height="31"
-            viewBox="0 0 31 31"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              x1="1.14217"
-              y1="1.14214"
-              x2="29.4264"
-              y2="29.4264"
-              stroke="white"
-              stroke-width="2"></line>
-            <line
-              x1="29.4263"
-              y1="1.14213"
-              x2="1.14207"
-              y2="29.4264"
-              stroke="white"
-              stroke-width="2"></line>
+
+        <button @click="open = false" x-cloak x-show="open">
+          <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="1.14217" y1="1.14214" x2="29.4264" y2="29.4264" stroke="white" stroke-width="2"></line>
+            <line x1="29.4263" y1="1.14213" x2="1.14207" y2="29.4264" stroke="white" stroke-width="2"></line>
           </svg>
         </button>
       </div>
     </div>
   </div>
-  <ul class="menu menu--mobile flex-col gap-[50px] py-[20px] px-[20px] w-full" x-cloak x-show="open" x-transition>
+
+  <!-- Mobile menu -->
+  <ul class="menu menu--mobile flex-col gap-[50px] w-full py-[24px] px-[16px]" x-cloak x-show="open" x-transition>
     <li>
-      <a @click="open = false" href="/#verime_v_slovensko">Veríme v Slovensko</a>
+      <a class="link" @click="open = false" href="/#verime_v_slovensko">Veríme v Slovensko</a>
     </li>
+
     <li>
-      <a @click="open = false" href="/#iniciatorky_a_iniciatori">Iniciátori</a>
+      <a class="link" @click="open = false" href="/#iniciatorky_a_iniciatori">Iniciátori</a>
     </li>
+
     <li>
-      <a @click="open = false" href="/#podporovatelia">Podporovatelia</a>
+      <a class="link" @click="open = false" href="/#podporovatelia">Podporovatelia</a>
     </li>
-    <li><a @click="open = false" href="/#kontakt">Kontakt</a></li>
-    <li class="w-full text-center">
-      <a class="button button--ghost" @click="open = false" href="#">Prihláste sa</a>
-    </li>
+
+    <li><a class="link" @click="open = false" href="/#kontakt">Kontakt</a></li>
+
+    <!-- Facebook button -->
     <li class="w-full flex justify-center py-[30px]">
       <a @click="open = false" href="https://www.facebook.com/Zapni-sa-pre-Slovensko-109776752154327">
-        <svg
-          width="50"
-          height="50"
-          viewBox="0 0 50 50"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_82_1212)">
             <path
               d="M25 0C11.2 0 0 11.25 0 25.15C0 37.7 9.15 48.1 21.1 50V32.4H14.75V25.15H21.1V19.6C21.1 13.3 24.85 9.8 30.55 9.8C33.3 9.8 36.15 10.3 36.15 10.3V16.5H33C29.9 16.5 28.95 18.45 28.95 20.45V25.15H35.9L34.8 32.4H28.9V50C40.85 48.1 50 37.7 50 25.15C50 11.25 38.8 0 25 0Z"
