@@ -1,0 +1,67 @@
+---
+export interface Props {
+  gtagCode?: string;
+}
+
+const { gtagCode } = Astro.props;
+---
+
+<div class="cookie-bar" x-data="cookieBar" x-show="consent === false" x-cloak data-gtagCode={gtagCode}>
+  <p class="text-gray-800 tablet:text-justify">
+    Táto stránka používa marketingové a analytické cookies, vďaka ktorým vám môžeme poskytovať personalizovaný obsah a
+    reklamy, ako aj sledovať váš pohyb na stránke. Kliknutím na "Súhlasím" vyjadríte súhlas s použitím týchto cookies.
+    Chcete vedieť viac? Kliknite na "Ochrana osobných údajov".
+  </p>
+
+  <div class="shrink-0">
+    <a
+      @click="handleConsent"
+      class="button button--primary text-white border-2 border-primary hover:border-violet-600 !ring-offset-white"
+      href="#">Súhlasím</a
+    >
+    <a class="button button--primary-outlined mt-[8px]" href="/gdpr">Ochrana osobných údajov</a>
+  </div>
+</div>
+
+<script>
+  import Alpine, { AlpineComponent } from "alpinejs";
+
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("cookieBar", function (this: AlpineComponent) {
+      return {
+        consent: this.$persist(false),
+
+        handleConsent() {
+          this.consent = true;
+
+          loadScript("/_vercel/insights/script.js");
+
+          const cookieBar: HTMLElement | null = document.querySelector("[data-gtagCode]");
+          const gtagCode = cookieBar ? cookieBar.dataset.gtagCode : "";
+
+          if (gtagCode) {
+            loadScript(`https://www.googletagmanager.com/gtag/js?id=${gtagCode}`);
+
+            (window as any).dataLayer = (window as any).dataLayer || [];
+
+            function gtag(...args: any[]) {
+              dataLayer.push(args);
+            }
+
+            gtag("js", new Date());
+            gtag("config", gtagCode);
+          }
+        },
+      };
+    });
+  });
+
+  const loadScript = (url: string) => {
+    const scriptTag = document.createElement("script");
+
+    scriptTag.type = "text/javascript";
+    scriptTag.src = url;
+
+    document.body.appendChild(scriptTag);
+  };
+</script>
