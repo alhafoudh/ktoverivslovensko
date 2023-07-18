@@ -6,7 +6,7 @@ export interface Props {
 const { gtagCode } = Astro.props;
 ---
 
-<div class="cookie-bar" x-data="cookieBar" x-show="consent === false" x-cloak data-gtagCode={gtagCode}>
+<div class="cookie-bar" x-data="cookieBar" x-show="consent === false" x-cloak>
   <p class="text-gray-800 tablet:text-justify">
     Táto stránka používa marketingové a analytické cookies, vďaka ktorým vám môžeme poskytovať personalizovaný obsah a
     reklamy, ako aj sledovať váš pohyb na stránke. Kliknutím na "Súhlasím" vyjadríte súhlas s použitím týchto cookies.
@@ -23,11 +23,9 @@ const { gtagCode } = Astro.props;
   </div>
 </div>
 
-<script>
-  import Alpine, { AlpineComponent } from "alpinejs";
-
+<script define:vars={{ gtagCode }}>
   document.addEventListener("alpine:init", () => {
-    Alpine.data("cookieBar", function (this: AlpineComponent) {
+    Alpine.data("cookieBar", function () {
       return {
         consent: this.$persist(false),
 
@@ -36,16 +34,13 @@ const { gtagCode } = Astro.props;
 
           loadScript("/_vercel/insights/script.js");
 
-          const cookieBar: HTMLElement | null = document.querySelector("[data-gtagCode]");
-          const gtagCode = cookieBar ? cookieBar.dataset.gtagCode : "";
-
           if (gtagCode) {
             loadScript(`https://www.googletagmanager.com/gtag/js?id=${gtagCode}`);
 
-            (window as any).dataLayer = (window as any).dataLayer || [];
+            window.dataLayer = window.dataLayer || [];
 
-            function gtag(...args: any[]) {
-              dataLayer.push(args);
+            function gtag() {
+              dataLayer.push(arguments);
             }
 
             gtag("js", new Date());
@@ -56,7 +51,7 @@ const { gtagCode } = Astro.props;
     });
   });
 
-  const loadScript = (url: string) => {
+  const loadScript = url => {
     const scriptTag = document.createElement("script");
 
     scriptTag.type = "text/javascript";
