@@ -1,5 +1,3 @@
-import type { Supporter } from "../env";
-
 export const personInitiators = [
   "Lucia Pašková",
   "Zuzana Suchová",
@@ -37,52 +35,6 @@ export const companyInitiators = [
   "Veselé paradajky",
   "Bystriny",
 ];
-
-export const supporters: Supporter[] =
-  process.env.MOCK_SUPPORTERS === "true"
-    ? [
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-        {
-          name: "Organizácia",
-          amount: "100 000,00 €",
-          note: "finančná pomoc",
-        },
-      ]
-    : [];
 
 export const beliefFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSeyO4pwS0698OYq5DiOdEI7xhSHsIMlxl0R1hYMP48efYqNvA/viewform";

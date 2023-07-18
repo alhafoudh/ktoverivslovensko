@@ -3,17 +3,14 @@ import { kv } from "@vercel/kv";
 import fetch from "node-fetch";
 import * as process from "process";
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse
-) {
+const getContentfulUrl = (contentType: string) =>
+  `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries/?content_type=${contentType}&order=sys.createdAt&access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`;
 
+export default async function handler(request: VercelRequest, response: VercelResponse) {
   // Beliefs
-  const beliefsUrl = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries/?content_type=beliefs&order=sys.createdAt&access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`;
+  const beliefsUrl = getContentfulUrl("beliefs");
 
-  const beliefsRawData = await fetch(
-    beliefsUrl
-  ).then((response) => response.json());
+  const beliefsRawData = await fetch(beliefsUrl).then(response => response.json());
 
   console.log(beliefsRawData);
   const beliefs: Record<string, string>[] = beliefsRawData.items.map((item: any) => {
@@ -32,7 +29,7 @@ export default async function handler(
       name: item.fields.name,
       organization: item.fields.organization,
       text: item.fields.text,
-      image
+      image,
     };
   });
 
@@ -41,33 +38,49 @@ export default async function handler(
   await kv.set("beliefs:data", JSON.stringify(beliefs));
   await kv.set("beliefs:updated_at", new Date().toISOString());
 
+  // Supporters
+  const supportersUrl = getContentfulUrl("supporters");
+
+  const supportersRawData = await fetch(supportersUrl).then(response => response.json());
+  console.log(supportersRawData);
+
+  const supporters: Record<string, string>[] = supportersRawData.items.map((item: any) => ({
+    id: item.sys.id,
+    name: item.fields.name,
+    amount: item.fields.amount,
+    note: item.fields.note,
+  }));
+
+  console.log(supporters);
+
+  await kv.set("supporters:data", JSON.stringify(supporters));
+  await kv.set("supporters:updated_at", new Date().toISOString());
+
   // Activities
 
   const formatTime = (time: string) => {
-    const [h, m, _] = time.split(':')
+    const [h, m, _] = time.split(":");
     return `${h}:${m}`;
   };
 
   const activitiesUrl = `https://dobrovolnictvo.onsinch.com/broadcast/v1/fetch`;
 
-  const activitiesRawData = await fetch(
-    activitiesUrl
-  ).then((response) => response.json());
+  const activitiesRawData = await fetch(activitiesUrl).then(response => response.json());
 
   const activities = activitiesRawData.map((activity: any) => {
-    const beginning = new Date(activity.beginning.replace(' ', 'T') + "Z");
-    const ending = new Date(activity.end.replace(' ', 'T') + "Z");
+    const beginning = new Date(activity.beginning.replace(" ", "T") + "Z");
+    const ending = new Date(activity.end.replace(" ", "T") + "Z");
 
     return {
       id: activity.slotId,
       image: null,
       title: activity.job,
       utc_from: beginning.toISOString(),
-      date_from: beginning.toLocaleDateString('sk'),
-      time_from: formatTime(beginning.toLocaleTimeString('sk')),
+      date_from: beginning.toLocaleDateString("sk"),
+      time_from: formatTime(beginning.toLocaleTimeString("sk")),
       utc_to: ending.toISOString(),
-      date_to: ending.toLocaleDateString('sk'),
-      time_to: formatTime(ending.toLocaleTimeString('sk')),
+      date_to: ending.toLocaleDateString("sk"),
+      time_to: formatTime(ending.toLocaleTimeString("sk")),
       location: `${activity.location_name}, ${activity.location_note}`,
       city: activity.location_city,
       position: null,
@@ -75,7 +88,7 @@ export default async function handler(
       size: Number.parseInt(activity.size),
       attendance_count: activity.attendanceCount,
       url: activity.link,
-      modifiedAt: activity.modified
+      modifiedAt: activity.modified,
     };
   });
 
