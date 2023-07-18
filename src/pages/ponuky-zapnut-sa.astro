@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import calendarIcon from "/images/calendar-icon.svg";
+import mapPinIcon from "/images/map-pin-icon.svg";
 ---
 
 <Layout>
@@ -26,7 +28,7 @@ import Layout from "../layouts/Layout.astro";
       <form>
         <div class="flex flex-col tablet:flex-row gap-[32px]">
           <div class="form-input">
-            <label for="city" class="uppercase text-primary">Mesto</label>
+            <label for="city" class="field-label">Mesto</label>
 
             <select id="city" name="city" x-model="selectedCity" x-effect="$dispatch('reload')">
               <option value="">Všetky mestá</option>
@@ -38,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
           </div>
 
           <div class="form-input">
-            <label for="date" class="uppercase text-primary">Dátum</label>
+            <label for="date" class="field-label">Dátum</label>
             <input id="date" name="date" type="date" x-model="selectedDate" x-effect="$dispatch('reload')" />
           </div>
         </div>
@@ -61,47 +63,46 @@ import Layout from "../layouts/Layout.astro";
           <div class="activity">
             <img x-bind:src="activity.image" x-show="activity.image" />
 
-            <div class="p-[16px] flex flex-col gap-[16px] grow">
-              <div class="field">
+            <div class="p-[24px] flex flex-col gap-[24px] grow">
+              <div class="field field--bold">
                 <label>Aktivita</label>
                 <span x-text="activity.title"></span>
               </div>
 
-              <div class="flex justify-between">
-                <div class="field">
-                  <label>Dátum</label>
-                  <span x-text="activity.date_from"></span>
+              <div class="field !gap-[16px]">
+                <div class="flex gap-[8px]">
+                  <img src={calendarIcon} />
+
+                  <div>
+                    <span x-text="activity.date_from"></span>, <span
+                      x-text="`${activity.time_from} - ${activity.time_to}`"></span>
+                  </div>
                 </div>
 
-                <div class="field">
-                  <label>Čas</label>
-                  <span x-text="`${activity.time_from} - ${activity.time_to}`"></span>
-                </div>
-              </div>
+                <div x-data="{expanded: false}" class="flex items-start gap-[8px]">
+                  <img src={mapPinIcon} />
 
-              <div class="field" x-data="{expanded: false}">
-                <label>Miesto</label>
+                  <div>
+                    <span
+                      x-show="!expanded"
+                      x-html="activity.location.length > 60 ? `${activity.location.substring(0, 60)}...` : activity.location"
+                    ></span>
 
-                <div>
-                  <span
-                    x-show="!expanded"
-                    x-html="activity.location.length > 100 ? `${activity.location.substring(0, 100)}...` : activity.location"
-                  ></span>
+                    <span x-show="expanded" x-html="activity.location"></span>
 
-                  <span x-show="expanded" x-html="activity.location"></span>
-
-                  <a
-                    x-show="!expanded && activity.location.length > 100"
-                    class="link"
-                    href="#"
-                    @click.prevent="expanded = true">(viac)</a
-                  >
-                  <a
-                    x-show="expanded && activity.location.length > 100"
-                    class="link"
-                    href="#"
-                    @click.prevent="expanded = false">(menej)</a
-                  >
+                    <a
+                      x-show="!expanded && activity.location.length > 60"
+                      class="link"
+                      href="#"
+                      @click.prevent="expanded = true">(viac)</a
+                    >
+                    <a
+                      x-show="expanded && activity.location.length > 60"
+                      class="link"
+                      href="#"
+                      @click.prevent="expanded = false">(menej)</a
+                    >
+                  </div>
                 </div>
               </div>
 
@@ -110,7 +111,7 @@ import Layout from "../layouts/Layout.astro";
                 <span x-text="activity.position"></span>
               </div>
 
-              <div class="field field--light" x-data="{expanded: false}">
+              <div class="field" x-data="{expanded: false}">
                 <label>Popis</label>
 
                 <div>
@@ -136,7 +137,7 @@ import Layout from "../layouts/Layout.astro";
                 </div>
               </div>
 
-              <div class="field">
+              <div class="field field--bold">
                 <label>Obsadenosť</label>
 
                 <div>
@@ -145,11 +146,8 @@ import Layout from "../layouts/Layout.astro";
               </div>
             </div>
 
-            <div class="p-[16px]">
-              <a
-                class="button button--primary-outlined focus:ring-offset-violet-100"
-                href="https://dobrovolnictvo.onsinch.com">Chcem pomocť</a
-              >
+            <div class="p-[24px] pt-0">
+              <a class="button button--primary-outlined" href="https://dobrovolnictvo.onsinch.com">Chcem pomôcť</a>
             </div>
           </div>
         </template>

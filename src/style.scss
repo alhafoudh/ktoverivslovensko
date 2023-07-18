@@ -129,7 +129,11 @@
 
   form {
     .form-input {
-      @apply w-full tablet:w-auto flex flex-col gap-[8px];
+      @apply w-full mobile:max-w-[335px] flex flex-col gap-[8px];
+    }
+
+    .field-label {
+      @apply font-accent font-semibold uppercase text-[14px];
     }
 
     select {
@@ -138,7 +142,7 @@
 
     select,
     input {
-      @apply appearance-none w-full tablet:w-auto h-[60px] px-[18px] pr-[48px] bg-white border-2 border-primary rounded-[6px];
+      @apply appearance-none w-full h-[60px] px-[18px] pr-[48px] bg-white border-2 border-primary rounded-[6px];
       @apply text-[18px] font-medium;
 
       background-image: url('data:image/svg+xml,<svg viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L0.669873 0.499999L9.33013 0.5L5 8Z" fill="blue"/></svg>');
@@ -181,30 +185,30 @@
       aspect-ratio: 1;
     }
 
-    .button {
-      @apply text-[18px] w-full;
-    }
-
     .field {
-      @apply flex flex-col gap-[5px] w-full;
+      @apply flex flex-col gap-[8px] w-full;
 
       label {
-        @apply uppercase tracking-widest text-[12px];
+        @apply font-accent font-semibold uppercase text-[14px];
       }
 
       span {
-        @apply text-[18px] font-bold leading-7;
+        @apply text-[14px] leading-snug;
       }
 
-      &--light {
+      &--bold {
         span {
-          @apply font-normal;
+          @apply text-[18px] font-bold;
         }
       }
     }
 
     .link {
       @apply text-[14px] text-violet-400 hover:text-primary;
+    }
+
+    .button {
+      @apply text-[14px] w-full border-[1px] focus:ring-offset-violet-100;
     }
   }
 
