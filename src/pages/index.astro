@@ -3,9 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import { companyInitiators, beliefFormUrl, donationUrl, personInitiators, supporters } from "../data/home";
 import Donations from "../components/Donations.astro";
 import toggle from "/images/toggle.svg";
+
+const meta = {
+  title: "Veríš v Slovensko?",
+  description:
+    "Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisť voči inakosti… to všetko okrem iného spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí. Poďme si navzájom vrátiť vieru v Slovensko!",
+  keywords: "dôvera, viera, dobrovoľníctvo, zodpovednosť, voľby, slovensko, darcovstvo, výzva, spoločnosť, demokracia",
+};
 ---
 
-<Layout>
+<Layout {...meta}>
   <main>
     <section class="tablet:hidden section section--secondary py-[40px]">
       <div class="section__content text-center">

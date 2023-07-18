@@ -2,9 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 import calendarIcon from "/images/calendar-icon.svg";
 import mapPinIcon from "/images/map-pin-icon.svg";
+
+const meta = {
+  title: "Zapni sa pre Slovensko",
+  description:
+    "Veríš v Slovensko? Tak sa zapni. Tu každý, kto verí v Slovensko môže spraviť niečo konkrétne. Celé Slovensko vyzývame sa zapnúť. Nemanipulujeme kampaňami, vyzývame k činnosti a zdieľame zodpovednosť. Dlhodobá, nekonečná aktivita. Odmeňujeme zapnutých.",
+  keywords:
+    "dôvera, inštitúcie, dobrovoľníctvo, zodpovednosť, slovensko, aktivita, firma, demokracia, dlhodobosť, spoločnosť",
+};
 ---
 
-<Layout>
+<Layout {...meta}>
   <section class="section section--hero pt-[70px] pb-[80px]">
     <div class="section__content">
       <h1 class="text-center tablet:text-left">Ponuky <strong>zapnúť sa</strong></h1>
