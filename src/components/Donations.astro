@@ -1,5 +1,5 @@
 ---
-import { donationAmounts, donationUrlWithAmount } from "../data/home";
+import { currentDonationAmount, donationAmounts, donationUrlWithAmount } from "../data/home";
 ---
 
 <div class="donations flex flex-col items-center p-[24px] laptop:p-[32px] text-primary bg-secondary rounded-[8px]">
@@ -42,17 +42,17 @@ import { donationAmounts, donationUrlWithAmount } from "../data/home";
     >
   </form>
 
-  <div
-    x-data="{ amount: $persist(0) }"
-    x-init="fetch('/api/donations').then(response => response.json()).then(data => amount = data.currentAmount)"
-    x-cloak
-    x-show="amount > 0"
-    x-transition
-    class="mt-[45px] font-accent text-[40px] text-center"
-  >
-    Zatiaľ sme spoločne získali <span class="font-bold" x-text="new Intl.NumberFormat('sk-SK').format(amount)">0</span
-    ><span class="font-bold">&nbsp;&euro;</span>
-  </div>
+  {
+    currentDonationAmount > 0 && (
+      <div class="mt-[45px] font-accent text-[40px] text-center">
+        Zatiaľ sme spoločne získali{" "}
+        <>
+          <span class="font-bold">{new Intl.NumberFormat("sk-SK").format(currentDonationAmount)}</span>
+          <span class="font-bold">&nbsp;&euro;</span>
+        </>
+      </div>
+    )
+  }
 
   <div class="mt-[50px] flex items-center gap-[20px] text-[16px]">
     <span>Táto výzva beží na</span>

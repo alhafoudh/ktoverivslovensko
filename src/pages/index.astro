@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { companyInitiators, beliefFormUrl, donationUrl, personInitiators } from "../data/home";
+import { companyInitiators, beliefFormUrl, donationUrl, personInitiators, beliefs, supporters } from "../data/home";
 import Donations from "../components/Donations.astro";
 import toggle from "/images/toggle.svg";
 
@@ -119,26 +119,22 @@ const meta = {
       <div class="section__content">
         <h2>Pozrite sa, kto všetko už v Slovensko verí</h2>
 
-        <div
-          class="mt-[100px] grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px]"
-          x-data="{ beliefs: $persist([]) }"
-          x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
-        >
-          <template x-for="belief in beliefs" :key="belief.id">
-            <div class="bg-white rounded-[8px] overflow-clip flex flex-col">
-              <img class="object-cover" style="aspect-ratio: 1;" x-bind:src="belief.image" />
+        <div class="mt-[100px] grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px]">
+          {
+            beliefs.map(belief => (
+              <div class="bg-white rounded-[8px] overflow-clip flex flex-col">
+                <img class="object-cover" style="aspect-ratio: 1;" src={belief.image} />
 
-              <div class="p-[24px]">
-                <div
-                  class="font-accent text-primary text-[32px] font-medium leading-snug uppercase tracking-[-1px]"
-                  x-text="belief.name"
-                >
+                <div class="p-[24px]">
+                  <div class="font-accent text-primary text-[32px] font-medium leading-snug uppercase tracking-[-1px]">
+                    {belief.name}
+                  </div>
+                  <div class="mt-[12px] text-[18px] leading-snug">{belief.organization}</div>
+                  <p class="mt-[24px] text-[18px] font-bold leading-normal">{belief.text}</p>
                 </div>
-                <div class="mt-[12px] text-[18px] leading-snug" x-text="belief.organization"></div>
-                <p class="mt-[24px] text-[18px] font-bold leading-normal" x-text="belief.text"></p>
               </div>
-            </div>
-          </template>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -177,18 +173,16 @@ const meta = {
       <div class="section__content">
         <h2>Podporovatelia</h2>
 
-        <div
-          class="mt-[100px] grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-4 gap-[20px]"
-          x-data="{ supporters: $persist([]) }"
-          x-init="fetch('/api/supporters').then(response => response.json()).then(data => supporters = data)"
-        >
-          <template x-for="supporter in supporters" :key="supporter.id">
-            <div class="px-[16px] py-[24px] flex flex-col gap-[20px] items-center bg-violet-100 rounded-[8px]">
-              <div x-text="supporter.name" class="text-[18px] font-bold leading-relaxed"></div>
-              <div x-text="supporter.amount" class="text-[22px] font-medium leading-relaxed"></div>
-              <div x-text="supporter.note" class="text-[14px] font-medium leading-normal"></div>
-            </div>
-          </template>
+        <div class="mt-[100px] grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-4 gap-[20px]">
+          {
+            supporters.map(supporter => (
+              <div class="px-[16px] py-[24px] flex flex-col gap-[20px] items-center bg-violet-100 rounded-[8px]">
+                <div class="text-[18px] font-bold leading-relaxed">{supporter.name}</div>
+                <div class="text-[22px] font-medium leading-relaxed">{supporter.amount}</div>
+                <div class="text-[14px] font-medium leading-normal">{supporter.note}</div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
