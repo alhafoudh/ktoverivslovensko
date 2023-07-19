@@ -1,7 +1,9 @@
 import type { Activity, Belief, Supporter } from "src/env";
 
+const { CONTENTFUL_SPACE_ID, CONTENTFUL_ENVIRONMENT, CONTENTFUL_ACCESS_TOKEN } = import.meta.env;
+
 const getContentfulUrl = (contentType: string) =>
-  `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries/?content_type=${contentType}&order=sys.createdAt&access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`;
+  `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}/entries/?content_type=${contentType}&order=sys.createdAt&access_token=${CONTENTFUL_ACCESS_TOKEN}`;
 
 export const personInitiators = [
   "Lucia Pašková",
@@ -58,6 +60,8 @@ export const beliefs = await (async () => {
   const beliefsUrl = getContentfulUrl("beliefs");
 
   const beliefsRawData = await fetch(beliefsUrl).then(response => response.json());
+
+  console.log(beliefsUrl);
 
   const beliefs: Belief[] = beliefsRawData.items.map((item: any) => {
     let image = "";
