@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { companyInitiators, beliefFormUrl, donationUrl, personInitiators } from "../data/home";
 import Donations from "../components/Donations.astro";
 import toggle from "/images/toggle.svg";
+import { fetchBeliefs, fetchSupporters } from "api/cron";
 
 const meta = {
   title: "Veríš v Slovensko?",
@@ -10,6 +11,9 @@ const meta = {
     "Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisť voči inakosti… to všetko okrem iného spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí. Poďme si navzájom vrátiť vieru v Slovensko!",
   keywords: "dôvera, viera, dobrovoľníctvo, zodpovednosť, voľby, slovensko, darcovstvo, výzva, spoločnosť, demokracia",
 };
+
+const beliefs = await fetchBeliefs();
+const supporters = await fetchSupporters();
 ---
 
 <Layout {...meta}>
@@ -124,6 +128,22 @@ const meta = {
           x-data="{ beliefs: $persist([]) }"
           x-init="fetch('/api/beliefs').then(response => response.json()).then(data => beliefs = data)"
         >
+          {
+            beliefs.map(belief => (
+              <div x-show="beliefs.length === 0" class="bg-white rounded-[8px] overflow-clip flex flex-col">
+                <img class="object-cover" style="aspect-ratio: 1;" src={belief.image} />
+
+                <div class="p-[24px]">
+                  <div class="font-accent text-primary text-[32px] font-medium leading-snug uppercase tracking-[-1px]">
+                    {belief.name}
+                  </div>
+                  <div class="mt-[12px] text-[18px] leading-snug">{belief.organization}</div>
+                  <p class="mt-[24px] text-[18px] font-bold leading-normal">{belief.text}</p>
+                </div>
+              </div>
+            ))
+          }
+
           <template x-for="belief in beliefs" :key="belief.id">
             <div class="bg-white rounded-[8px] overflow-clip flex flex-col">
               <img class="object-cover" style="aspect-ratio: 1;" x-bind:src="belief.image" />
@@ -182,6 +202,19 @@ const meta = {
           x-data="{ supporters: $persist([]) }"
           x-init="fetch('/api/supporters').then(response => response.json()).then(data => supporters = data)"
         >
+          {
+            supporters.map(supporter => (
+              <div
+                x-show="suppoters.length === 0"
+                class="px-[16px] py-[24px] flex flex-col gap-[20px] items-center bg-violet-100 rounded-[8px]"
+              >
+                <div class="text-[18px] font-bold leading-relaxed">{supporter.name}</div>
+                <div class="text-[22px] font-medium leading-relaxed">{supporter.amount}</div>
+                <div class="text-[14px] font-medium leading-normal">{supporter.note}</div>
+              </div>
+            ))
+          }
+
           <template x-for="supporter in supporters" :key="supporter.id">
             <div class="px-[16px] py-[24px] flex flex-col gap-[20px] items-center bg-violet-100 rounded-[8px]">
               <div x-text="supporter.name" class="text-[18px] font-bold leading-relaxed"></div>

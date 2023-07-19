@@ -6,24 +6,23 @@ import * as process from "process";
 const getContentfulUrl = (contentType: string) =>
   `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries/?content_type=${contentType}&order=sys.createdAt&access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`;
 
-export default async function handler(request: VercelRequest, response: VercelResponse) {
-  // Beliefs
+export const fetchBeliefs = async () => {
   const beliefsUrl = getContentfulUrl("beliefs");
 
   const beliefsRawData = await fetch(beliefsUrl).then(response => response.json());
 
-  console.log(beliefsRawData);
   const beliefs: Record<string, string>[] = beliefsRawData.items.map((item: any) => {
     let image = "";
 
-    console.log(item);
     const avatarAssetId = item.fields.avatar?.sys?.id;
     const avatarAsset = beliefsRawData.includes.Asset.find(
       (asset: any) => avatarAssetId && asset.sys.id === avatarAssetId
     );
+
     if (avatarAsset) {
       image = `${avatarAsset.fields.file.url}?w=512&h=512&fit=fill`;
     }
+
     return {
       id: item.sys.id,
       name: item.fields.name,
@@ -33,16 +32,13 @@ export default async function handler(request: VercelRequest, response: VercelRe
     };
   });
 
-  console.log(beliefs);
+  return beliefs;
+};
 
-  await kv.set("beliefs:data", JSON.stringify(beliefs));
-  await kv.set("beliefs:updated_at", new Date().toISOString());
-
-  // Supporters
+export const fetchSupporters = async () => {
   const supportersUrl = getContentfulUrl("supporters");
 
   const supportersRawData = await fetch(supportersUrl).then(response => response.json());
-  console.log(supportersRawData);
 
   const supporters: Record<string, string>[] = supportersRawData.items.map((item: any) => ({
     id: item.sys.id,
@@ -51,13 +47,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
     note: item.fields.note,
   }));
 
-  console.log(supporters);
+  return supporters;
+};
 
-  await kv.set("supporters:data", JSON.stringify(supporters));
-  await kv.set("supporters:updated_at", new Date().toISOString());
-
-  // Activities
-
+export const fetchActivities = async () => {
   const formatTime = (time: string) => {
     const [h, m, _] = time.split(":");
     return `${h}:${m}`;
@@ -67,7 +60,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
   const activitiesRawData = await fetch(activitiesUrl).then(response => response.json());
 
-  const activities = activitiesRawData.map((activity: any) => {
+  const activities: Record<string, string>[] = activitiesRawData.map((activity: any) => {
     const beginning = new Date(activity.beginning.replace(" ", "T") + "Z");
     const ending = new Date(activity.end.replace(" ", "T") + "Z");
 
@@ -91,6 +84,28 @@ export default async function handler(request: VercelRequest, response: VercelRe
       modifiedAt: activity.modified,
     };
   });
+
+  return activities;
+};
+
+export default async function handler(request: VercelRequest, response: VercelResponse) {
+  // Beliefs
+  const beliefs = await fetchBeliefs();
+  console.log(beliefs);
+
+  await kv.set("beliefs:data", JSON.stringify(beliefs));
+  await kv.set("beliefs:updated_at", new Date().toISOString());
+
+  // Supporters
+  const supporters = await fetchSupporters();
+  console.log(supporters);
+
+  await kv.set("supporters:data", JSON.stringify(supporters));
+  await kv.set("supporters:updated_at", new Date().toISOString());
+
+  // Activities
+  const activities = await fetchActivities();
+  console.log(activities);
 
   await kv.set("activities:data", JSON.stringify(activities));
   await kv.set("activities:updated_at", new Date().toISOString());
