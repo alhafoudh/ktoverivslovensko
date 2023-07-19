@@ -71,16 +71,18 @@ export default async function handler(request: VercelRequest, response: VercelRe
     const beginning = new Date(activity.beginning.replace(" ", "T") + "Z");
     const ending = new Date(activity.end.replace(" ", "T") + "Z");
 
+    const timeZone = "Europe/Bratislava";
+
     return {
       id: activity.slotId,
       image: null,
       title: activity.job,
       utc_from: beginning.toISOString(),
       date_from: beginning.toLocaleDateString("sk"),
-      time_from: formatTime(beginning.toLocaleTimeString("sk")),
+      time_from: formatTime(beginning.toLocaleTimeString("sk", { timeZone })),
       utc_to: ending.toISOString(),
       date_to: ending.toLocaleDateString("sk"),
-      time_to: formatTime(ending.toLocaleTimeString("sk")),
+      time_to: formatTime(ending.toLocaleTimeString("sk", { timeZone })),
       location: `${activity.location_name}, ${activity.location_note}`,
       city: activity.location_city,
       position: null,
