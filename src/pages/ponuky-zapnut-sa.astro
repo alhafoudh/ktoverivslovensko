@@ -25,12 +25,12 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
   <section
     class="section"
     x-data=`{ selectedCity: null, selectedDate: null, activities: ${JSON.stringify(activities)}, selectedActivities: [], cities: ${JSON.stringify(cities)} }`
-    @reload=`
+    @reload="
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
-        .filter((activity) => selectedDate ? activity.date === selectedDate : true)
+        .filter((activity) => selectedDate ? activity.date_from_iso === selectedDate : true)
         .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1)
-      `
+      "
   >
     <div class="section__content">
       <form>
@@ -57,7 +57,7 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
       <div
         class="w-full text-center text-[24px] mt-[70px]"
         x-cloak
-        x-show="!loading && selectedActivities.length === 0"
+        x-show="selectedActivities.length === 0"
       >
         Nenašli sa žiadne ponuky.
       </div>
