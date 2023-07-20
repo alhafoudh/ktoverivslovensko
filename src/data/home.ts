@@ -61,8 +61,6 @@ export const beliefs = await (async () => {
 
   const beliefsRawData = await fetch(beliefsUrl).then(response => response.json());
 
-  console.log(beliefsUrl);
-
   const beliefs: Belief[] = beliefsRawData.items.map((item: any) => {
     let image = "";
 
