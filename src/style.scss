@@ -15,9 +15,9 @@
 
 @layer components {
   .button {
-    @apply inline-block w-full mobile:w-auto py-[14px] px-[28px] rounded-[8px] cursor-pointer transition-colors focus:outline-none;
-    @apply font-accent text-[30px] font-bold text-center uppercase leading-none;
-    @apply focus:ring-2 focus:ring-offset-[3px];
+    @apply inline-block w-full mobile:w-auto py-[14px] px-[28px] rounded-[8px] cursor-pointer transition-colors;
+    @apply font-accent text-[30px] font-bold text-center uppercase leading-none select-none;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-[3px];
 
     &--primary {
       @apply text-secondary bg-primary hover:bg-violet-600  focus:ring-primary  focus:ring-offset-secondary;
@@ -92,7 +92,7 @@
         }
 
         > h1 {
-          @apply text-white text-[56px] tablet:text-[80px] font-bold leading-tight tracking-[-2.4px];
+          @apply text-white text-[56px] tablet:text-[80px] font-bold leading-snug tracking-[-2.4px];
         }
 
         > h2 {
@@ -260,6 +260,24 @@
 
     &::backdrop {
       @apply bg-black bg-opacity-50;
+    }
+  }
+
+  .pagination {
+    @apply mt-[60px] flex items-center justify-center gap-[6px];
+
+    & .button {
+      @apply w-auto min-w-[32px] h-[32px] px-[12px] py-[0] flex items-center justify-center;
+      @apply text-primary text-[15px] font-bold leading-none bg-white hover:bg-violet-100;
+      @apply focus:ring-primary focus:ring-offset-0 focus:ring-offset-white;
+
+      &.active {
+        @apply bg-violet-100 hover:bg-violet-200;
+      }
+
+      &[disabled] {
+        @apply bg-white;
+      }
     }
   }
 }

@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import { activities } from "../data/home";
 import calendarIcon from "/images/calendar-icon.svg";
 import mapPinIcon from "/images/map-pin-icon.svg";
+import caretLeft from "/images/caret-left.svg";
+import caretRight from "/images/caret-right.svg";
 
 const meta = {
   title: "Zapni sa pre Slovensko",
@@ -24,13 +26,26 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
 
   <section
     class="section"
-    x-data=`{ selectedCity: null, selectedDate: null, activities: ${JSON.stringify(activities)}, selectedActivities: [], cities: ${JSON.stringify(cities)} }`
-    @reload="
+    x-data=`{
+      selectedCity: null,
+      selectedDate: null,
+      activities: ${JSON.stringify(activities)},
+      selectedActivities: [],
+      cities: ${JSON.stringify(cities)},
+      page: 0,
+      pageSize: 12,
+      totalPages: 0,
+    }`
+    @reload=`
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
         .filter((activity) => selectedDate ? activity.date_from_iso === selectedDate : true)
-        .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1)
-      "
+        .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1);
+
+      page = 0;
+      totalPages = Math.ceil(selectedActivities.length / pageSize);
+    `
+    x-effect="Number.isInteger(page) && window.scrollTo(0, 0)"
   >
     <div class="section__content">
       <form>
@@ -54,16 +69,15 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
         </div>
       </form>
 
-      <div
-        class="w-full text-center text-[24px] mt-[70px]"
-        x-cloak
-        x-show="selectedActivities.length === 0"
-      >
+      <div class="w-full text-center text-[24px] mt-[70px]" x-cloak x-show="selectedActivities.length === 0">
         Nenašli sa žiadne ponuky.
       </div>
 
       <div class="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-[32px] mt-[70px]">
-        <template x-for="activity in selectedActivities" :key="activity.id">
+        <template
+          x-for="activity in selectedActivities.slice(page * pageSize, (page + 1) * pageSize)"
+          :key="activity.id"
+        >
           <div class="activity">
             <img x-bind:src="activity.image" x-show="activity.image" />
 
@@ -158,6 +172,39 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
           </div>
         </template>
       </div>
+
+      <div class="pagination" x-cloak>
+        <!-- Previous page -->
+        <button class="button" @click="page = page === 0 ? 0 : page - 1">
+          <img src={caretLeft} />
+        </button>
+
+        <!-- First page -->
+        <button class="button" :class="page === 0 && 'active'" @click="page = 0">1</button>
+
+        <button class="button" x-show="page > 2" disabled>...</button>
+
+        <button class="button" @click="page = page - 1" x-text="page" x-show="page > 1"></button>
+
+        <button class="button active" x-text="page + 1" x-show="page > 0 && page < totalPages - 1"></button>
+
+        <button class="button" @click="page = page + 1" x-text="page + 2" x-show="page < totalPages - 2"></button>
+
+        <button class="button" x-show="page < totalPages - 3" disabled>...</button>
+
+        <!-- Last page -->
+        <button
+          class="button"
+          :class="page === totalPages - 1 && 'active'"
+          x-text="totalPages"
+          x-show="totalPages > 1"
+          @click="page = totalPages - 1"></button>
+
+        <!-- Next page -->
+        <button @click="page = page === totalPages - 1 ? totalPages - 1 : page + 1" class="button">
+          <img src={caretRight} />
+        </button>
+      </div>
     </div>
   </section>
 
@@ -166,7 +213,9 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
       <h3 class="text-[42px] text-center font-semibold">Nenašiel si, kde sa chceš zapnúť?</h3>
       <p class="mt-[16px] text-center">Registruj sa a zostaň v obraze o aktuálnych možnostiach pomoci.</p>
 
-      <div class="max-w-screen-tablet mt-[40px] mx-auto grid grid-cols-1 tablet:grid-cols-2 gap-[16px] tablet:gap-[32px] odd:self-end">
+      <div
+        class="max-w-screen-tablet mt-[40px] mx-auto grid grid-cols-1 tablet:grid-cols-2 gap-[16px] tablet:gap-[32px] odd:self-end"
+      >
         <a class="button button--primary" href="https://dobrovolnictvo.onsinch.com/" target="_blank">onsinch.com</a>
         <a class="button button--primary" href="https://growni.sk/" target="_blank">growni.sk</a>
       </div>
