@@ -209,16 +209,10 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
   </section>
 
   <section class="section section--secondary py-[60px]">
-    <div class="section__content">
-      <h3 class="text-[42px] text-center font-semibold">Nenašiel si, kde sa chceš zapnúť?</h3>
-      <p class="mt-[16px] text-center">Registruj sa a zostaň v obraze o aktuálnych možnostiach pomoci.</p>
-
-      <div
-        class="max-w-screen-tablet mt-[40px] mx-auto grid grid-cols-1 tablet:grid-cols-2 gap-[16px] tablet:gap-[32px] odd:self-end"
-      >
-        <a class="button button--primary" href="https://dobrovolnictvo.onsinch.com/" target="_blank">onsinch.com</a>
-        <a class="button button--primary" href="https://growni.sk/" target="_blank">growni.sk</a>
-      </div>
+    <div class="section__content text-center">
+      <h3 class="text-[42px] font-semibold">Nenašiel si, kde sa chceš zapnúť?</h3>
+      <p class="mt-[16px]">Registruj sa a zostaň v obraze o aktuálnych možnostiach pomoci.</p>
+      <a class="button button--primary mt-[40px]" href="https://dobrovolnictvo.onsinch.com/" target="_blank">Registruj sa</a>
     </div>
   </section>
 </Layout>
