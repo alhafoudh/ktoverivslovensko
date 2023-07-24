@@ -15,7 +15,7 @@ const { id } = Astro.params;
 const activity = activities.find(a => a.id === id)!;
 ---
 
-<Layout>
+<Layout title={activity.title}>
   <section class="section section--hero pt-[70px] pb-[80px]">
     <div class="section__content">
       <h1 class="text-center tablet:text-left">Ponuka <strong>zapnúť sa</strong></h1>
