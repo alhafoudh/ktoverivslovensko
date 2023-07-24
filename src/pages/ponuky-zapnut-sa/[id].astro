@@ -1,0 +1,93 @@
+---
+import Layout from "src/layouts/Layout.astro";
+import { activities } from "src/data/home";
+
+import calendarIcon from "/images/calendar-icon.svg";
+import mapPinIcon from "/images/map-pin-icon.svg";
+
+export const getStaticPaths = () =>
+  activities.map(activity => ({
+    params: { id: activity.id },
+  }));
+
+const { id } = Astro.params;
+
+const activity = activities.find(a => a.id === id)!;
+---
+
+<Layout>
+  <section class="section section--hero pt-[70px] pb-[80px]">
+    <div class="section__content">
+      <h1 class="text-center tablet:text-left">Ponuka <strong>zapnúť sa</strong></h1>
+    </div>
+  </section>
+
+  <section class="section py-[80px]">
+    <div class="section__content max-w-[600px]">
+      <div class="activity">
+        <div class="p-[24px] flex flex-col gap-[24px] grow">
+          <div class="field field--bold">
+            <label>Aktivita</label>
+            <span>{activity.title}</span>
+          </div>
+
+          <div class="field !gap-[16px]">
+            <div class="flex gap-[8px]">
+              <img src={calendarIcon} />
+
+              <div>
+                <span>{activity.date_from}</span>, <span>{`${activity.time_from} - ${activity.time_to}`}</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-[8px]">
+              <img src={mapPinIcon} />
+
+              <div>
+                <span set:html={activity.location} />
+              </div>
+            </div>
+          </div>
+
+          {
+            activity.position && (
+              <div class="field">
+                <label>Pozícia</label>
+                <span>{activity.position}</span>
+              </div>
+            )
+          }
+
+          <div class="field">
+            <label>Popis</label>
+            <span set:html={activity.description} />
+          </div>
+
+          <div class="field field--bold">
+            <label>Obsadenosť</label>
+
+            <div>
+              <span>{activity.attendance_count}</span> / <span>{activity.size}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-[24px] pt-0">
+          <a class="button button--primary-outlined !w-auto" href="https://dobrovolnictvo.onsinch.com" target="_blank"
+            >Chcem pomôcť</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--secondary py-[60px]">
+    <div class="section__content text-center">
+      <h3 class="text-[42px] font-semibold">Nenašiel si, kde sa chceš zapnúť?</h3>
+      <p class="mt-[16px]">Registruj sa a zostaň v obraze o aktuálnych možnostiach pomoci.</p>
+      <a class="button button--primary mt-[40px]" href="https://dobrovolnictvo.onsinch.com/" target="_blank"
+        >Registruj sa</a
+      >
+    </div>
+  </section>
+</Layout>

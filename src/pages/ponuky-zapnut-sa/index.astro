@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { activities } from "../data/home";
+import Layout from "../../layouts/Layout.astro";
+import { activities } from "../../data/home";
 import calendarIcon from "/images/calendar-icon.svg";
 import mapPinIcon from "/images/map-pin-icon.svg";
 import caretLeft from "/images/caret-left.svg";
@@ -212,7 +212,9 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
     <div class="section__content text-center">
       <h3 class="text-[42px] font-semibold">Nenašiel si, kde sa chceš zapnúť?</h3>
       <p class="mt-[16px]">Registruj sa a zostaň v obraze o aktuálnych možnostiach pomoci.</p>
-      <a class="button button--primary mt-[40px]" href="https://dobrovolnictvo.onsinch.com/" target="_blank">Registruj sa</a>
+      <a class="button button--primary mt-[40px]" href="https://dobrovolnictvo.onsinch.com/" target="_blank"
+        >Registruj sa</a
+      >
     </div>
   </section>
 </Layout>
