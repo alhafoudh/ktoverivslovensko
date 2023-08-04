@@ -284,7 +284,7 @@
 
 .cookie-bar {
   @apply w-full p-[12px] rounded-[8px];
-  @apply max-w-[min(860px,calc(100%-16px))] tablet:max-w-[min(860px,calc(100%-32px))];
+  @apply max-w-[min(960px,calc(100%-16px))] tablet:max-w-[min(960px,calc(100%-32px))];
   @apply fixed bottom-[8px] tablet:bottom-[16px] left-[50%] translate-x-[-50%];
   @apply border-2 border-primary bg-white shadow-lg;
   @apply flex flex-col tablet:flex-row gap-[16px];

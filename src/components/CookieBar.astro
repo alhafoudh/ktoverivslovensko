@@ -6,20 +6,25 @@ export interface Props {
 const { gtagCode } = Astro.props;
 ---
 
-<div class="cookie-bar" x-data="cookieBar" x-show="consent === false" x-cloak>
+<div class="cookie-bar" x-data="cookieBar" x-show="consent === null" x-cloak>
   <p class="text-gray-800 tablet:text-justify">
     Táto stránka používa marketingové a analytické cookies, vďaka ktorým vám môžeme poskytovať personalizovaný obsah a
     reklamy, ako aj sledovať váš pohyb na stránke. Kliknutím na "Súhlasím" vyjadríte súhlas s použitím týchto cookies.
-    Chcete vedieť viac? Kliknite na "Ochrana osobných údajov".
+    Kliknutím na "Nesúhlasím" odmietate ukladanie týchto cookies na vašom zariadení. Viac informácií nájdete v sekcii <a
+      href="/gdpr"
+      class="text-primary font-medium hover:underline">ochrana osobných údajov</a
+    >
   </p>
 
-  <div class="shrink-0">
+  <div class="tablet:basis-[200px] shrink-0">
     <button
-      @click="handleConsent"
+      @click="handleConsent(true)"
       class="button button--primary w-full text-white border-2 border-primary hover:border-violet-600 !ring-offset-white"
       >Súhlasím</button
     >
-    <a class="button button--primary-outlined mt-[8px]" href="/gdpr">Ochrana osobných údajov</a>
+
+    <button @click="handleConsent(false)" class="button button--primary-outlined mt-[8px] w-full">Nesúhlasím</button>
+    <!-- <a class="button button--primary-outlined mt-[8px]" href="/gdpr">Ochrana osobných údajov</a> -->
   </div>
 </div>
 
@@ -27,10 +32,11 @@ const { gtagCode } = Astro.props;
   document.addEventListener("alpine:init", () => {
     Alpine.data("cookieBar", function () {
       return {
-        consent: this.$persist(false),
+        consent: this.$persist(null),
 
-        handleConsent() {
-          this.consent = true;
+        handleConsent(value) {
+          this.consent = value;
+          if (!value) return;
 
           loadScript("/_vercel/insights/script.js");
 
