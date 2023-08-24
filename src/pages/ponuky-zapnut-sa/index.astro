@@ -28,7 +28,8 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
     class="section"
     x-data=`{
       selectedCity: null,
-      selectedDate: null,
+      selectedStartDate: null,
+      selectedEndDate: null,
       activities: ${JSON.stringify(activities)},
       selectedActivities: [],
       cities: ${JSON.stringify(cities)},
@@ -36,10 +37,16 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
       pageSize: 12,
       totalPages: 0,
     }`
+    @set-date-range=`
+      selectedStartDate = $event.detail.newStartDate;
+      selectedEndDate = $event.detail.newEndDate;
+      $dispatch('reload');
+    `
     @reload=`
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
-        .filter((activity) => selectedDate ? activity.date_from_iso === selectedDate : true)
+        .filter((activity) => selectedStartDate ? activity.utc_from >= selectedStartDate : true)
+        .filter((activity) => selectedEndDate ? activity.utc_from <= selectedEndDate : true)
         .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1);
 
       page = 0;
@@ -63,8 +70,8 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
           </div>
 
           <div class="form-input">
-            <label for="date" class="field-label">Dátum</label>
-            <input id="date" name="date" type="date" x-model="selectedDate" x-effect="$dispatch('reload')" />
+            <label for="date-range" class="field-label">Dátum</label>
+            <input id="date-range" name="date-range" type="text" placeholder="Všetky dátumy" class="cursor-pointer" />
           </div>
         </div>
       </form>
@@ -218,3 +225,52 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
     </div>
   </section>
 </Layout>
+
+<script>
+  import { easepick } from "@easepick/core";
+  import { AmpPlugin } from "@easepick/amp-plugin";
+  import { RangePlugin } from "@easepick/range-plugin";
+  import type { DateTime } from "@easepick/datetime";
+
+  const dateRangeInput = document.getElementById("date-range")!;
+
+  new easepick.create({
+    element: dateRangeInput,
+    AmpPlugin: { resetButton: true, darkMode: false },
+    RangePlugin: { tooltip: false },
+    plugins: [AmpPlugin, RangePlugin],
+    css: ["https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css"],
+    zIndex: 8,
+    format: "DD.MM.YYYY",
+    lang: "sk",
+
+    setup: pckr => {
+      pckr.on("select", (e: CustomEvent<{ start: DateTime; end: DateTime }>) => {
+        const startDate = e.detail.start;
+        const endDate = e.detail.end;
+
+        startDate.setHours(0, 0);
+        endDate.setHours(23, 59);
+
+        dateRangeInput.dispatchEvent(
+          new CustomEvent("set-date-range", {
+            detail: {
+              newStartDate: startDate.toISOString(),
+              newEndDate: endDate.toISOString(),
+            },
+            bubbles: true,
+          })
+        );
+      });
+
+      pckr.on("clear", () =>
+        dateRangeInput.dispatchEvent(
+          new CustomEvent("set-date-range", {
+            detail: { newStartDate: null, newEndDate: null },
+            bubbles: true,
+          })
+        )
+      );
+    },
+  });
+</script>

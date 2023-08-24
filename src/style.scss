@@ -185,7 +185,7 @@
       select,
       input {
         @apply appearance-none w-full h-[60px] px-[18px] pr-[48px] bg-white border-2 border-primary rounded-[6px];
-        @apply text-[18px] font-medium;
+        @apply text-[18px] text-primary font-medium placeholder:text-primary;
 
         background-image: url('data:image/svg+xml,<svg viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L0.669873 0.499999L9.33013 0.5L5 8Z" fill="blue"/></svg>');
         background-size: 10px;
