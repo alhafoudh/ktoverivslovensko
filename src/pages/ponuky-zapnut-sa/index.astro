@@ -232,8 +232,6 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
   import { RangePlugin } from "@easepick/range-plugin";
   import type { DateTime } from "@easepick/datetime";
 
-  import easepickCss from "public/css/easepick.css";
-
   const dateRangeInput = document.getElementById("date-range")!;
 
   new easepick.create({
@@ -241,7 +239,7 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
     AmpPlugin: { resetButton: true, darkMode: false },
     RangePlugin: { tooltip: false },
     plugins: [AmpPlugin, RangePlugin],
-    css: easepickCss,
+    css: ["css/easepick.css"],
     zIndex: 8,
     format: "DD.MM.YYYY",
     lang: "sk",
