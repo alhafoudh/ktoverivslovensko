@@ -44,34 +44,38 @@
 }
 
 .container {
-  margin-top: 8px;
-  border-radius: 8px;
-  color: var(--color-fg-default);
-  cursor: default;
   display: inline-block;
-  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; */
+
+  height: 0;
+  margin-top: 8px;
+
+  color: var(--color-fg-default);
+  border-radius: 8px;
+
+  position: absolute;
   font-family: inherit;
   font-size: 0.8em;
-  height: 0;
-  overflow: hidden;
+  
+  cursor: default;
   pointer-events: all;
-  position: absolute;
-  transform: scale(0);
-  transform-origin: top left;
-  transition: transform 0.3s ease-out;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(20px);
+  
+  transition: all 150ms ease-out;
 }
 
 .container.calc {
   height: auto;
-  transform: none;
-  transition: none;
   visibility: hidden;
 }
 
 .container.show {
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
   height: auto;
-  transform: scale(1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transform: translateY(0px);
 }
 
 .container.inline {
@@ -80,7 +84,7 @@
   left: 0;
   position: relative;
   top: 0;
-  transform: scaleY(1);
+  transform: translateY(0px);
 }
 
 .container > main {
@@ -325,19 +329,21 @@
   color: var(--color-fg-selected);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 420px) {
   .container:not(.inline) {
-    transform: scaleY(0) !important;
-    transform-origin: bottom center !important;
+    transform: translateY(50px) !important;
+    transition: all 200ms ease-out;
   }
 
   .container:not(.inline).show {
+    position: fixed !important;
+
+    top: auto !important;
+    right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
-    position: fixed !important;
-    right: 0 !important;
-    top: auto !important;
-    transform: scaleY(1) !important;
+
+    transform: translateY(0px) !important;
   }
 
   .container {
