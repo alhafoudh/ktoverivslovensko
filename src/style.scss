@@ -241,7 +241,7 @@
   .activity {
     @apply bg-violet-100 rounded-[8px] overflow-clip flex flex-col;
 
-    img {
+    & > img {
       @apply object-cover;
       aspect-ratio: 1;
     }

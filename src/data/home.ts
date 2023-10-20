@@ -125,6 +125,7 @@ export const activities = await (async () => {
       date_from: beginning.toLocaleDateString("sk"),
       time_from: formatTime(beginning.toLocaleTimeString("sk", { timeZone })),
       utc_to: ending.toISOString(),
+      date_to_iso: ending.toISOString().split('T')[0],
       date_to: ending.toLocaleDateString("sk"),
       time_to: formatTime(ending.toLocaleTimeString("sk", { timeZone })),
       location: `${activity.location_name}${activity.location_note !== '' ? ', ' + activity.location_note : ''}`,
