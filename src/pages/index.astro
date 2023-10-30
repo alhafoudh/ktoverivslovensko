@@ -24,11 +24,6 @@ const meta = {
       <div class="section__content">
         <h1>Veríš v Slovensko?</h1>
 
-        <p class="mt-[24px]">
-          Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisť voči inakosti… to všetko okrem iného
-          spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí.
-        </p>
-
         <h2 class="mt-[24px]">Poďme si navzájom vrátiť vieru v Slovensko!</h2>
 
         <ul class="mt-[8px]">
@@ -46,16 +41,18 @@ const meta = {
 
     <section id="zapnime_sa" class="section">
       <div class="section__content">
-        <h2>Robme dobré skutky a zapnime sa pre Slovensko cestou dobrovoľníctva.</h2>
+        <h2 class="max-w-screen-desktop mx-auto">
+          Robme dobré skutky a zapnime sa pre Slovensko cestou dobrovoľníctva.
+        </h2>
 
-        <p class="max-w-[800px] mx-auto mt-[40px] text-center">
+        <p class="max-w-screen-tablet mx-auto mt-[40px] text-center">
           Dobrovoľníctvo je činnosť, ktorú vykonávaš vo svojom voľnom čase, v prospech niekoho iného mimo členov tvojej
           rodiny a domácnosti a bez nároku na finančnú odmenu. Dobrovoľníctvom venuješ časť svojho voľného času,
           vedomostí a schopností a za to môžeš získať osobnostný a profesionálny rast, pocit zadosťučinenia, nové
           kontakty, priateľstvá a hlavne kopec nových skúseností.
         </p>
 
-        <p class="max-w-[800px] mx-auto mt-[40px] text-center">
+        <p class="max-w-screen-tablet mx-auto mt-[40px] text-center">
           Dobrovoľnícke aktivity môžu byť jednorazové alebo pravidelné, individuálne alebo skupinové, vonku alebo
           vnútri, viac intelektuálne alebo manuálne. Ďalej môže byť dobrovoľníctvo na lokálnej, regionálnej, národnej,
           alebo medzinárodnej úrovni. Dobrovoľníčiť môžeš aj z domu. Je len na tebe, ktorá oblasť ti je najbližšia a čo
@@ -63,32 +60,11 @@ const meta = {
           rozhodnúť, pozri si našu ponuku dobrovoľníckych aktivít.
         </p>
 
-        <div class="mt-[80px] grid grid-cols-1 tablet:grid-cols-2 gap-[32px] justify-center">
+        <div class="mt-[80px] grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-[32px] justify-center">
           <a href="/ponuky-zapnut-sa" class="tile">Zapni sa</a>
           <a href="https://forms.gle/dFdxU3rbqX5f3F5n7" class="tile">Zapni svoju firmu</a>
+          <a href="/pridaj-aktivitu" class="tile">Pridaj aktivitu</a>
         </div>
-
-        <h2 class="mt-[120px]">Chcem zadať aktivitu</h2>
-
-        <p class="max-w-[800px] mx-auto mt-[40px] text-center">
-          Ak chcete pridať dobrovoľnícku aktivitu, obráťte sa prosím na konkrétne krajské dobrovoľnícke centrum, kde vám
-          koordinátori a koordinátorky radi poskytnú bližšie informácie a odkonzultujú vašu dobrovoľnícku aktivitu.
-        </p>
-
-        <ul class="add-activity-contacts max-w-[800px] mx-auto mt-[40px]">
-          <li>
-            <span>Banskobystrický kraj:</span>
-            <span>zapnisabb@dobrovolnictvo.sk,</span>
-            <span>0908 411 917</span>
-          </li>
-          <li><span>Bratislavský kraj:</span> <span>zapnisaba@dobrovolnictvo.sk,</span> <span>0917 793 948</span></li>
-          <li><span>Košický kraj:</span> <span>zapnisake@dobrovolnictvo.sk,</span> <span>0917 949 598</span></li>
-          <li><span>Nitriansky kraj:</span> <span>zapnisanr@dobrovolnictvo.sk,</span> <span>0907 361 011</span></li>
-          <li><span>Prešovský kraj:</span> <span>zapnisapo@dobrovolnictvo.sk,</span> <span>0948 870 577</span></li>
-          <li><span>Trenčiansky kraj:</span> <span>zapnisatn@dobrovolnictvo.sk,</span> <span>0951 071 931</span></li>
-          <li><span>Trnavský kraj:</span> <span>zapnisatt@dobrovolnictvo.sk,</span> <span>0949 209 865</span></li>
-          <li><span>Žilinský kraj:</span> <span>zapnisaza@dobrovolnictvo.sk,</span> <span>+421 944 143 789</span></li>
-        </ul>
       </div>
     </section>
 
@@ -138,8 +114,28 @@ const meta = {
           dobrovoľníckych centier a organizácií, Asociácia digitálnych marketingových agentúr a ďalšie expertné
           organizácie, aby pomohli správne nastaviť systém a procesy práce s dobrovoľníkmi a dobrovoľníčkami.
         </p>
+      </div>
+    </section>
 
-        <p class="mt-[40px] tablet:text-center font-light">
+    <section class="section pt-[80px]">
+      <div class="section__content">
+        <p class="tablet:text-center font-light">
+          Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a iniciatívy, ktorí veríme v Slovensko.
+        </p>
+
+        <p class="mt-[40px] tablet:text-center font-medium">
+          {personInitiators.join(" • ")}
+        </p>
+
+        <p class="mt-[40px] tablet:text-center font-medium">
+          {companyInitiators.join(" • ")}
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--primary pt-[80px]">
+      <div class="section__content">
+        <p class="tablet:text-center font-light">
           Do iniciatívy Zapni sa pre Slovensko, ktorá sa snažila podporiť dobrovoľnícku pomoc komunitám po celom
           Slovensku, sa v priebehu leta zapojili stovky dobrovoľníkov. V období od 1. júla do 20. septembra 2023 sa 350
           dobrovoľníkov zúčastnilo na niektorej z vyše 500 registrovaných ponúk na webe <a
