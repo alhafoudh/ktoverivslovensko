@@ -24,7 +24,7 @@
     }
 
     &--secondary {
-      @apply text-primary bg-secondary hover:bg-white focus:ring-secondary focus:ring-offset-primary;
+      @apply text-primary bg-secondary hover:bg-white focus:ring-secondary focus:hover:ring-white focus:ring-offset-primary;
     }
 
     &--primary-outlined {
@@ -170,6 +170,24 @@
     }
   }
 
+  .add-activity-contacts {
+    li {
+      @apply flex flex-col gap-x-[6px] tablet:flex-row px-[12px] py-[8px] rounded-[6px] leading-normal;
+
+      &:nth-of-type(odd) {
+        @apply bg-violet-50;
+      }
+
+      span {
+        @apply block;
+
+        &:nth-of-type(1) {
+          @apply font-semibold;
+        }
+      }
+    }
+  }
+
   form {
     .form-input {
       @apply w-full mobile:max-w-[335px] flex flex-col gap-[8px];
@@ -223,7 +241,7 @@
   .activity {
     @apply bg-violet-100 rounded-[8px] overflow-clip flex flex-col;
 
-    img {
+    & > img {
       @apply object-cover;
       aspect-ratio: 1;
     }

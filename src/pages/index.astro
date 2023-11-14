@@ -24,17 +24,11 @@ const meta = {
       <div class="section__content">
         <h1>Veríš v Slovensko?</h1>
 
-        <p class="mt-[24px]">
-          Hnev na nefungujúci štát, obava z kolapsu zdravotníctva či nenávisť voči inakosti… to všetko okrem iného
-          spôsobuje, že v Slovensko v skutočnosti verí veľmi málo ľudí.
-        </p>
-
         <h2 class="mt-[24px]">Poďme si navzájom vrátiť vieru v Slovensko!</h2>
 
         <ul class="mt-[8px]">
-          <li>Pretože ak veríme, <strong>tak sa zaujímame</strong>.</li>
           <li>Pretože ak veríme, <strong>tak niečo dobré urobíme</strong>.</li>
-          <li>Pretože ak veríme, <strong>tak neodídeme</strong>.</li>
+          <li>Pretože ak veríme, <strong>tak dobrovoľne pomôžeme</strong>.</li>
           <li>Ak veríme, <strong>tak sa zapneme</strong>.</li>
         </ul>
 
@@ -47,70 +41,29 @@ const meta = {
 
     <section id="zapnime_sa" class="section">
       <div class="section__content">
-        <h2>Zapnime sa</h2>
+        <h2 class="max-w-screen-desktop mx-auto">
+          Robme dobré skutky a zapnime sa pre Slovensko cestou dobrovoľníctva.
+        </h2>
 
-        <p class="max-w-[800px] mx-auto mt-[40px] text-center">
-          Poďme spolu robiť užitočné veci tak, aby sme dlhodobo posilňovali dôveru medzi nami. Tak, aby sa zapojil
-          každý, kto svoju vieru v Slovensko bude chcieť pretaviť v činy. Dajme si výzvu a urobme spolu 1000 dobrých
-          skutkov!
+        <p class="max-w-screen-tablet mx-auto mt-[40px] text-center">
+          Dobrovoľníctvo je činnosť, ktorú vykonávaš vo svojom voľnom čase, v prospech niekoho iného mimo členov tvojej
+          rodiny a domácnosti a bez nároku na finančnú odmenu. Dobrovoľníctvom venuješ časť svojho voľného času,
+          vedomostí a schopností a za to môžeš získať osobnostný a profesionálny rast, pocit zadosťučinenia, nové
+          kontakty, priateľstvá a hlavne kopec nových skúseností.
         </p>
 
-        <div class="mt-[80px] grid grid-cols-1 tablet:grid-cols-3 justify-items-center gap-[32px]">
-          <div
-            class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
-          >
-            <h3 class="mb-[50px] text-[32px] font-medium text-primary">Podporím</h3>
-            <a class="button button--primary" href={donationUrl}>Darujem</a>
-          </div>
+        <p class="max-w-screen-tablet mx-auto mt-[40px] text-center">
+          Dobrovoľnícke aktivity môžu byť jednorazové alebo pravidelné, individuálne alebo skupinové, vonku alebo
+          vnútri, viac intelektuálne alebo manuálne. Ďalej môže byť dobrovoľníctvo na lokálnej, regionálnej, národnej,
+          alebo medzinárodnej úrovni. Dobrovoľníčiť môžeš aj z domu. Je len na tebe, ktorá oblasť ti je najbližšia a čo
+          si vyberieš. Vo všeobecnosti je najlepšie s dobrovoľníctvom začať vo svojom blízkom okolí. Ak sa nevieš
+          rozhodnúť, pozri si našu ponuku dobrovoľníckych aktivít.
+        </p>
 
-          <div
-            class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
-          >
-            <h3 class="mb-[50px] text-[32px] font-medium text-primary">Urobím</h3>
-            <a class="button button--primary" href="/zapni-sa">Vyberiem si</a>
-          </div>
-
-          <div
-            class="w-full flex flex-col justify-between items-center pt-[42px] pb-[34px] px-[16px] text-center bg-secondary rounded-[8px]"
-            x-data=""
-          >
-            <h3 class="mb-[50px] text-[32px] font-medium text-primary">Prevezmem zodpovednosť</h3>
-
-            <button class="button button--primary" @click="$refs.voteModal.showModal()">Pôjdem voliť</button>
-
-            <dialog x-ref="voteModal" class="vote-modal">
-              <div class="flex justify-end mb-[20px]">
-                <button @click="$refs.voteModal.close()">
-                  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="1.14217" y1="1.14214" x2="29.4264" y2="29.4264" stroke="black" stroke-width="2"></line>
-                    <line x1="29.4263" y1="1.14213" x2="1.14207" y2="29.4264" stroke="black" stroke-width="2"></line>
-                  </svg>
-                </button>
-              </div>
-              <script type="module" hoist>
-                const observer = new IntersectionObserver(entries => {
-                  for (const entry of entries) {
-                    if (!entry.isIntersecting) continue;
-                    observer.disconnect();
-                    import("add-to-calendar-button");
-                  }
-                });
-                const instances = document.querySelectorAll("add-to-calendar-button");
-                for (const instance of instances) observer.observe(instance);
-              </script>
-
-              <add-to-calendar-button
-                name="Parlamentné voľby 2023"
-                startDate="2023-09-30"
-                endDate="2023-09-30"
-                timeZone="Europe/Bratislava"
-                options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
-                hideBackground
-                buttonsList
-                size="7"
-                label="Pridať do kalendára"></add-to-calendar-button>
-            </dialog>
-          </div>
+        <div class="mt-[80px] grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-[32px] justify-center">
+          <a href="/ponuky-zapnut-sa" class="tile">Zapni sa</a>
+          <a href="https://forms.gle/dFdxU3rbqX5f3F5n7" class="tile">Zapni svoju firmu</a>
+          <a href="/pridaj-aktivitu" class="tile">Pridaj aktivitu</a>
         </div>
       </div>
     </section>
@@ -153,9 +106,20 @@ const meta = {
 
     <section id="kto_sme" class="section section--primary">
       <div class="section__content">
-        <h2>Iniciátorky a iniciátori</h2>
+        <h2>Kto sme</h2>
 
         <p class="mt-[80px] tablet:text-center font-light">
+          Iniciatíva Zapni sa pre slovensko vznikla v júli 2023. Pri jej vzniku pomáhali jednotlivci, občianska
+          spoločnosť, firmy, organizácie, inštitúcie a iniciatívy, ktoré veria v Slovensko. Súčasťou boli aj Platforma
+          dobrovoľníckych centier a organizácií, Asociácia digitálnych marketingových agentúr a ďalšie expertné
+          organizácie, aby pomohli správne nastaviť systém a procesy práce s dobrovoľníkmi a dobrovoľníčkami.
+        </p>
+      </div>
+    </section>
+
+    <section class="section pt-[80px]">
+      <div class="section__content">
+        <p class="tablet:text-center font-light">
           Sme jednotlivci, občianska spoločnosť, firmy, organizácie, inštitúcie a iniciatívy, ktorí veríme v Slovensko.
         </p>
 
@@ -169,9 +133,35 @@ const meta = {
       </div>
     </section>
 
+    <section class="section section--primary pt-[80px]">
+      <div class="section__content">
+        <p class="tablet:text-center font-light">
+          Do iniciatívy Zapni sa pre Slovensko, ktorá sa snažila podporiť dobrovoľnícku pomoc komunitám po celom
+          Slovensku, sa v priebehu leta zapojili stovky dobrovoľníkov. V období od 1. júla do 20. septembra 2023 sa 350
+          dobrovoľníkov zúčastnilo na niektorej z vyše 500 registrovaných ponúk na webe <a
+            href="www.zapnisapreslovensko.sk">www.zapnisapreslovensko.sk</a
+          >.
+        </p>
+
+        <p class="mt-[40px] tablet:text-center font-bold">
+          Od 1. októbra 2023 sa z inicatívy Zapni sa pre Slovensko stal program podpory dlhodobého dobrovoľníctva na
+          Slovensku, ktorý realizuje Platforma dobrovoľníckych centier a organizácií.
+        </p>
+
+        <p class="mt-[40px] tablet:text-center font-light">
+          Do dobrovoľníctva sa môže jednoducho zapojiť každý pravdaže AJ NAĎALEJ. Stačí kliknúť na
+          <a href="www.zapnisapreslovensko.sk">www.zapnisapreslovensko.sk</a>, zaregistrovať sa a prihlásiť sa na
+          niektorú z ponúk v časti „Zapnúť sa“. Každá ponuka má uvedený dátum aktivity, miesto a stručný popis a medzi
+          ponukami sa dá jednoducho vyhľadávať podľa miesta konania. Mnoho z ponúk je časovo flexibilných, čiže s
+          organizátorom sa dá dohodnúť na konkrétnom dni a hodine. Zapojiť sa môže každý, kto si nájde čas na pomoc
+          komunite, či už jednorazovo alebo pravidelne.
+        </p>
+      </div>
+    </section>
+
     <section id="podporovatelia" class="section">
       <div class="section__content">
-        <h2>Podporovatelia</h2>
+        <h2>Podporovatelia iniciatívy Zapni sa pre Slovensko</h2>
 
         <div class="mt-[100px] grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-4 gap-[20px]">
           {
@@ -194,15 +184,16 @@ const meta = {
         <p class="mt-[40px] font-light text-center">Ďakujeme, že veríte v Slovensko.</p>
 
         <p class="mt-[20px] font-light text-center">
-          Email: <a class="font-semibold hover:underline underline-2 underline-offset-4" href="mailto:ahoj@zapnisa.sk"
-            >ahoj@zapnisa.sk</a
+          Email: <a
+            class="font-semibold hover:underline underline-2 underline-offset-4"
+            href="mailto:zapnisa@dobrovolnictvo.sk">zapnisa@dobrovolnictvo.sk</a
           >
         </p>
 
         <p class="mt-[20px] font-light text-center">
           Pre média: <a
             class="font-semibold hover:underline underline-2 underline-offset-4"
-            href="mailto:media@zapnisa.sk">media@zapnisa.sk</a
+            href="mailto:pr@dobrovolnictvo.sk">pr@dobrovolnictvo.sk</a
           >
         </p>
       </div>

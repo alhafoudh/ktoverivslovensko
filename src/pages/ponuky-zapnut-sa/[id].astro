@@ -32,11 +32,26 @@ const activity = activities.find(a => a.id === id)!;
           </div>
 
           <div class="field !gap-[16px]">
-            <div class="flex gap-[8px]">
+            <div class="flex items-start gap-[8px]">
               <img src={calendarIcon} />
 
               <div>
-                <span>{activity.date_from}</span>, <span>{`${activity.time_from} - ${activity.time_to}`}</span>
+                {
+                  activity.date_from === activity.date_to ? (
+                    <div>
+                      <span>{activity.date_from}</span>, <span>{`${activity.time_from} - ${activity.time_to}`}</span>
+                    </div>
+                  ) : (
+                    <div>
+                      <span class="block">
+                        Od: <span>{activity.date_from}</span>, <span>{activity.time_from}</span>
+                      </span>
+                      <span class="block">
+                        Do: <span>{activity.date_to}</span>, <span>{activity.time_to}</span>
+                      </span>
+                    </div>
+                  )
+                }
               </div>
             </div>
 
@@ -72,11 +87,11 @@ const activity = activities.find(a => a.id === id)!;
           </div>
         </div>
 
-        <div class="p-[24px] pt-0">
+        <!-- <div class="p-[24px] pt-0">
           <a class="button button--primary-outlined !w-auto" href="https://dobrovolnictvo.onsinch.com" target="_blank"
             >Chcem pomôcť</a
           >
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

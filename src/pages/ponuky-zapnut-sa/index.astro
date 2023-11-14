@@ -46,6 +46,7 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
         .filter((activity) => selectedStartDate ? activity.utc_from >= selectedStartDate : true)
+        .filter((activity) => selectedStartDate ? activity.utc_to >= selectedStartDate : true)
         .filter((activity) => selectedEndDate ? activity.utc_from <= selectedEndDate : true)
         .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1);
 
@@ -95,12 +96,19 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
               </div>
 
               <div class="field !gap-[16px]">
-                <div class="flex gap-[8px]">
+                <div class="flex items-start gap-[8px]">
                   <img src={calendarIcon} />
 
                   <div>
-                    <span x-text="activity.date_from"></span>, <span
-                      x-text="`${activity.time_from} - ${activity.time_to}`"></span>
+                    <div x-show="activity.date_from === activity.date_to">
+                      <span x-text="activity.date_from"></span>, <span
+                        x-text="`${activity.time_from} - ${activity.time_to}`"></span>
+                    </div>
+
+                    <div x-show="activity.date_from !== activity.date_to">
+                      <span class="block">Od: <span x-text="activity.date_from"></span>, <span x-text="activity.time_from"></span></span>
+                      <span class="block">Do: <span x-text="activity.date_to"></span>, <span x-text="activity.time_to"></span></span>
+                    </div>
                   </div>
                 </div>
 
@@ -171,11 +179,11 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
               </div>
             </div>
 
-            <div class="p-[24px] pt-0">
+            <!-- <div class="p-[24px] pt-0">
               <a class="button button--primary-outlined" href="https://dobrovolnictvo.onsinch.com" target="_blank"
                 >Chcem pomôcť</a
               >
-            </div>
+            </div> -->
           </div>
         </template>
       </div>
