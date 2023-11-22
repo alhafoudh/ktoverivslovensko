@@ -45,7 +45,6 @@ const cities = [...new Set(activities.map(activity => activity.city))].sort((a, 
     @reload=`
       selectedActivities = activities
         .filter((activity) => selectedCity != null && selectedCity !== '' ? activity.city === selectedCity : true)
-        .filter((activity) => selectedStartDate ? activity.utc_from >= selectedStartDate : true)
         .filter((activity) => selectedStartDate ? activity.utc_to >= selectedStartDate : true)
         .filter((activity) => selectedEndDate ? activity.utc_from <= selectedEndDate : true)
         .sort((a, b) => a.utc_from > b.utc_from ? 1 : -1);
